@@ -1,4 +1,4 @@
-require 'time'
+require 'date'
 
 class Item
   @next_item_id = 0
@@ -21,7 +21,7 @@ class Item
   end
 
   def can_be_archived?
-    publish_date < (Time.now - (60 * 60 * 24 * 365 * 10))
+    publish_date < (DateTime.now - (60 * 60 * 24 * 365 * 10))
   end
 
   def move_to_archive

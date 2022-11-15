@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require 'time'
+require 'date'
 
 describe Item do
   before :each do
@@ -8,14 +8,14 @@ describe Item do
       'author',
       'source',
       'label',
-      Time.now - (60 * 60 * 24 * 365 * 15)
+      DateTime.now - (60 * 60 * 24 * 365 * 15)
     )
     @non_archivable_item = Item.new(
       'genre',
       'author',
       'source',
       'label',
-      Time.now - (60 * 60 * 24 * 365 * 5)
+      DateTime.now - (60 * 60 * 24 * 365 * 5)
     )
   end
 
