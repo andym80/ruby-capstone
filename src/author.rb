@@ -16,7 +16,7 @@ class Author
   end
 
   def add_item(item)
-		item.author.items.delete item
+    item.author.items.delete item
     items.push(item)
     item.author = self
   end

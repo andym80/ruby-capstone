@@ -43,9 +43,7 @@ describe Item do
 
   context "Author's Items list is add when item is constructed" do
     it "archivable_item's author has archivable_item in it's items list" do
-      expect(@archivable_item.author.items.include? @archivable_item).to be(true)
+      expect(@archivable_item.author.items.include?(@archivable_item)).to be(true)
     end
-
   end
-
 end
