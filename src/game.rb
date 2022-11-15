@@ -21,4 +21,11 @@ class Game < Item
   def can_be_archived?
     super() && (last_played_at < (DateTime.now - (60 * 60 * 24 * 365 * 2)))
   end
+
+  def to_s
+		to_s_rtn = super()
+    to_s_rtn += "#{@multiplayer} "
+		to_s_rtn += "#{@last_played_at} "
+		to_s_rtn
+  end
 end
