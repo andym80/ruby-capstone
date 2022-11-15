@@ -1,3 +1,6 @@
+require './src/item'
+require './src/author'
+
 ONE_YEAR = 60 * 60 * 24 * 365
 
 def test_archivable(item, expect)

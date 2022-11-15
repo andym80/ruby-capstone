@@ -4,16 +4,18 @@ require 'date'
 
 describe Item do
   before :each do
+    base_author = Author.new('first_name', 'last_name')
+
     @archivable_item = Item.new(
       'genre',
-      'author',
+      base_author,
       'source',
       'label',
       DateTime.now - (ONE_YEAR * 15)
     )
     @non_archivable_item = Item.new(
       'genre',
-      'author',
+      base_author,
       'source',
       'label',
       DateTime.now - (ONE_YEAR * 5)
@@ -33,6 +35,12 @@ describe Item do
 
     it 'non_archivable_item move_to_archive DOES NOT archive the file' do
       test_archivable(@non_archivable_item, false)
+    end
+  end
+
+  context "Author's Items list is add when item is constructed" do
+    it "archivable_item's author has archivable_item in it's items list" do
+      expect(@archivable_item.author.items.include?(@archivable_item)).to be(true)
     end
   end
 end

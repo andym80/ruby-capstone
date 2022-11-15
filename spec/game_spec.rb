@@ -4,9 +4,10 @@ require 'date'
 
 describe Game do
   def build_test_game(publish_date_from_now, multiplayer, last_played_at_from_now)
+    base_author = Author.new('first_name', 'last_name')
     Game.new(
       'genre',
-      'author',
+      base_author,
       'source',
       'label',
       DateTime.now - publish_date_from_now,
