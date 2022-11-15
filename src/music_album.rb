@@ -3,8 +3,15 @@ require './item'
 class MusicAlbum < Item
   attr_accesor :on_spotify, :id
 
-  def initialize(on_spotify, *args)
-    super(*args)
+  def initialize(  # rubocop:disable Metrics/ParameterLists
+    genre, 
+    author, 
+    source, 
+    label, 
+    publish_date, 
+    on_spotify
+  ) 
+    super(genre, author, source, label, publish_date)
     @on_spotify = on_spotify
   end
 
