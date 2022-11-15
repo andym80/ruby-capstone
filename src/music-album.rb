@@ -24,11 +24,7 @@ class MusicAlbum < Item
     publish_date = gets.chomp
     print 'Spotify (Y/N)'
     spotify = gets.chomp
-    if spotify = 'Y'
-        true
-    else 
-        false
-    end
+    spotify == 'Y'
     MusicAlbum.new(title, artist, publish_date, spotify)
   end
 
