@@ -18,6 +18,8 @@ class Item
     @label = label
     @publish_date = publish_date
     @archived = false
+
+    author.add_item(self)
   end
 
   def can_be_archived?
