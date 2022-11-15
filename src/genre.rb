@@ -11,8 +11,7 @@ class Genre
   @add_item = input
 end
 
-def add_item(_items)
+def add_item(item)
   @items << item
-  @items.push(item)
   item.self = self
 end
