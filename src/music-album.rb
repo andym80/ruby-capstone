@@ -1,4 +1,4 @@
-require_relative './item'
+require './item'
 
 class MusicAlbum < Item
   attr_accesor :on_spotify, :id
@@ -24,7 +24,10 @@ class MusicAlbum < Item
     publish_date = gets.chomp
     print 'Spotify (Y/N)'
     spotify = gets.chomp
-    spotify === 'Y'
+    if spotify = 'Y'
+        true
+    else 
+        false
     MusicAlbum.new(title, artist, publish_date, spotify)
   end
 
