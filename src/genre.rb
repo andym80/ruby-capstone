@@ -1,7 +1,7 @@
 require_relative './item'
 require 'secure_random'
 
-class Genre < Item
+class Genre
   attr_accesor :id, :name, :items, :add_item
 
   initialize(id, name, items, input)
