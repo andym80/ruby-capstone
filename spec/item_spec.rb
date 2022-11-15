@@ -28,15 +28,11 @@ describe Item do
 
   context 'Item Id is auto_increment' do
     it 'archivable_item move_to_archive DOES archive the file' do
-      expect(@archivable_item.archived).to be(false)
-      @archivable_item.move_to_archive
-      expect(@archivable_item.archived).to be(true)
+      test_archivable(@archivable_item, true)
     end
 
     it 'non_archivable_item move_to_archive DOES NOT archive the file' do
-      expect(@non_archivable_item.archived).to be(false)
-      @non_archivable_item.move_to_archive
-      expect(@non_archivable_item.archived).to be(false)
+      test_archivable(@non_archivable_item, false)
     end
   end
 end
