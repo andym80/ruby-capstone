@@ -28,6 +28,7 @@ class MusicAlbum < Item
         true
     else 
         false
+    end
     MusicAlbum.new(title, artist, publish_date, spotify)
   end
 
