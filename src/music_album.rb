@@ -23,7 +23,6 @@ class MusicAlbum < Item
     print 'Publish date(year): '
     publish_date = gets.chomp
     print 'Spotify (Y/N)'
-    spotify = gets.chomp
     spotify = 'Y'
     MusicAlbum.new(title, artist, publish_date, spotify)
   end
