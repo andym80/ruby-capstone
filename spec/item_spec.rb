@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require './item'
+require './src/item'
 require 'date'
 
 describe Item do
