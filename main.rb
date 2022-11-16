@@ -1,7 +1,7 @@
 require_relative 'src/app'
 require './helper'
 
-class Main
+class Main # rubocop:disable Metrics/ClassLength
   def initialize()
     @app = App.new
   end
