@@ -4,7 +4,7 @@ describe Author do
   before :each do
     @initial_author = Author.new('initial_author_first_name', 'initial_author_last_name')
     @final_author = Author.new('final_author_first_name', 'final_author_last_name')
-		@base_genre = Genre.new('test genre')
+    @base_genre = Genre.new('test genre')
 
     @base_item = Item.new(
       'title',

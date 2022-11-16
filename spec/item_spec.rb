@@ -6,7 +6,7 @@ require 'date'
 describe Item do
   before :each do
     base_author = Author.new('first_name', 'last_name')
-		base_genre = Genre.new('test genre')
+    base_genre = Genre.new('test genre')
 
     @archivable_item = Item.new(
       'title',

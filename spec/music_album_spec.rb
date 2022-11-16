@@ -3,7 +3,7 @@ require 'spec_helper'
 
 def build_test_albun(publish_date_from_now, on_spotify)
   base_author = Author.new('first_name', 'last_name')
-	base_genre = Genre.new('test genre')
+  base_genre = Genre.new('test genre')
 
   MusicAlbum.new(
     'title',
