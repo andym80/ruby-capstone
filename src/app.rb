@@ -1,11 +1,13 @@
 require_relative 'author'
 require_relative 'game'
+require_relative 'music_album'
 
 class App
   attr_reader :games, :authors, :genres, :labels
 
   def initialize
     @games = []
+    @albums = []
     @authors = []
     @genres = []
     @labels = []
@@ -17,14 +19,23 @@ class App
     new_author
   end
 
-  def add_game(item_map, multiplayer, last_played_at)
+  def add_game(  # rubocop:disable Metrics/ParameterLists
+      title,
+      genre,
+      author,
+      source,
+      label,
+      publish_date,
+      multiplayer,
+      last_played_at
+    )
     @games.push(Game.new(
-                  item_map[:title],
-                  item_map[:genre],
-                  item_map[:author],
-                  item_map[:source],
-                  item_map[:label],
-                  item_map[:publish_date],
+                  title,
+                  genre,
+                  author,
+                  source,
+                  label,
+                  publish_date,
                   multiplayer,
                   last_played_at
                 ))
@@ -53,5 +64,33 @@ class App
       list_str += "last played at #{game.last_played_at}\n"
     end
     list_str
+  end
+
+  def list_all_albums
+    rtn_str = "list of all albums:\n"
+    @albums.each_with_index do |album, index|
+      list_str += "[#{index}] '#{album.title}' Author: #{album.author}\n"
+    end
+    rtn_str
+  end
+
+  def add_albums( # rubocop:disable Metrics/ParameterLists
+      title,
+      genre,
+      author,
+      source,
+      label,
+      publish_date,
+      on_spotify
+  )
+    @albums.push(MusicAlbum.new(
+                  title,
+                  genre,
+                  author,
+                  source,
+                  label,
+                  publish_date,
+                  on_spotify
+                ))
   end
 end

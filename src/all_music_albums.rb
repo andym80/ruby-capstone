@@ -2,11 +2,6 @@ require_relative 'music_album'
 
 module AllMusicAlbums
   include PreserveData
-  def list_albums(albums)
-    albums.each do |album|
-      puts "Title: #{album.title}, Author: #{album.author}"
-    end
-  end
 
   def create_album(albums)
     puts 'Title: '
