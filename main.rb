@@ -36,7 +36,7 @@ class Main
   end
 
   def input_author
-    puts 'please write Author frist name'
+    puts 'please write Author first name'
     first_name = gets.chomp
     puts 'please write Author last name'
     last_name = gets.chomp
