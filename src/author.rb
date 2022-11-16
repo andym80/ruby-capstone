@@ -20,8 +20,4 @@ class Author
     items.push(item)
     item.author = self
   end
-
-  def to_s_full_name
-    "#{first_name} #{last_name}"
-  end
 end
