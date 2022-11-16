@@ -5,6 +5,7 @@ class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
   def initialize( # rubocop:disable Metrics/ParameterLists
+    title,
     genre,
     author,
     source,
@@ -13,7 +14,7 @@ class Game < Item
     multiplayer,
     last_played_at
   )
-    super(genre, author, source, label, publish_date)
+    super(title, genre, author, source, label, publish_date)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end

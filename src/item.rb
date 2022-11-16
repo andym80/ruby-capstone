@@ -10,10 +10,11 @@ class Item
   end
 
   attr_reader :archived, :id
-  attr_accessor :genre, :author, :source, :label, :publish_date
+  attr_accessor :genre, :author, :source, :label, :publish_date, :title
 
-  def initialize(genre, author, source, label, publish_date)
+  def initialize(title, genre, author, source, label, publish_date) # rubocop:disable Metrics/ParameterLists
     @id = Item.generate_id
+    @title = title
     @genre = genre
     @author = author
     @source = source
