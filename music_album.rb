@@ -5,14 +5,14 @@ class MusicAlbum < Item
   attr_accessor :on_spotify, :id
 
   def initialize( # rubocop:disable Metrics/ParameterLists
-    title,
+    label,
     author,
     source,
     genre,
     publish_date,
     on_spotify
   )
-    super(genre, author, source, title, publish_date)
+    super(genre, author, source, label, publish_date)
     @on_spotify = on_spotify
   end
 
@@ -25,7 +25,7 @@ class MusicAlbum < Item
 
   def self.add_music_album
     print 'Music Album: '
-    title = gets.chomp
+    label = gets.chomp
     print 'Artist: '
     artist = gets.chomp
     print 'Publish date(year): '
@@ -34,7 +34,7 @@ class MusicAlbum < Item
     genre = gets.chomp
     print 'Spotify (Y/N)'
     spotify = 'Y'
-    MusicAlbum.new(title, artist, genre, publish_date, spotify)
+    MusicAlbum.new(label, artist, genre, publish_date, spotify)
   end
 
   def can_be_archived?
