@@ -11,7 +11,8 @@ class Genre
   end
 
   def add_item(item)
-    @items << item
-    item.self = self
+    item.genre.items.delete item
+    items.push(item)
+    item.genre = self
   end
 end

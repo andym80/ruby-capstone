@@ -6,10 +6,11 @@ require 'date'
 describe Item do
   before :each do
     base_author = Author.new('first_name', 'last_name')
+		base_genre = Genre.new('test genre')
 
     @archivable_item = Item.new(
       'title',
-      'genre',
+      base_genre,
       base_author,
       'source',
       'label',
@@ -17,7 +18,7 @@ describe Item do
     )
     @non_archivable_item = Item.new(
       'title',
-      'genre',
+      base_genre,
       base_author,
       'source',
       'label',
