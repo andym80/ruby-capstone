@@ -8,11 +8,11 @@ class MusicAlbum < Item
     genre,
     author,
     source,
-    label,
+    title,
     publish_date,
     on_spotify
   )
-    super(genre, author, source, label, publish_date)
+    super(genre, author, source, title, publish_date)
     @on_spotify = on_spotify
   end
 
