@@ -1,4 +1,4 @@
-require_relative '../src/music_album'
+require_relative 'spec_helper'
 
 describe '#title' do
   it 'returns the correct title' do

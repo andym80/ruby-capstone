@@ -1,5 +1,5 @@
-require './json'
-require './music_album'
+
+require_relative 'music_album'
 
 module AllMusicAlbums
   include PreserveData

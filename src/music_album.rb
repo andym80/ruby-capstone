@@ -1,8 +1,8 @@
-require './item'
+require_relative 'item'
 require 'json'
 
 class MusicAlbum < Item
-  attr_accesor :on_spotify, :id
+  attr_accessor :on_spotify, :id
 
   def initialize( # rubocop:disable Metrics/ParameterLists
     genre,
