@@ -73,12 +73,19 @@ class Main
     Date.parse(input_date)
   end
 
+
+  def choose_title_input
+    puts 'please intoduce a title'
+    gets.chomp
+  end
+
   # input for (genre, author, source, label, publish_date) return a map
   def input_item_obj
     rtn_obj = {}
 
     puts 'WARNING W.I.P'
 
+    rtn_obj[:title] = choose_title_input
     rtn_obj[:genre] = 'choose_genre_input'
     rtn_obj[:author] = choose_author_input
     rtn_obj[:source] = 'choose_source_input'

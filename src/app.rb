@@ -19,6 +19,7 @@ class App
 
   def add_game(item_map, multiplayer, last_played_at)
     @games.push(Game.new(
+                  item_map[:title],
                   item_map[:genre],
                   item_map[:author],
                   item_map[:source],
@@ -40,10 +41,16 @@ class App
     list_str
   end
 
+  def singleplayer_or_multiplayer(is_multiplayer)
+    is_multiplayer ? 'multiplayer': 'singleplayer_or_multiplayer'
+  end
+
   def all_games_list_str
     list_str = "list of all Game:\n"
     @games.each_with_index do |game, index|
-      list_str += "[#{index}] #{game.id}\n"
+      list_str += "[#{index}] '#{game.title}' "
+      list_str += "is a #{singleplayer_or_multiplayer game.multiplayer} game "
+      list_str += "last played at #{game.last_played_at}\n"
     end
     list_str
   end
