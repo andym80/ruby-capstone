@@ -1,5 +1,5 @@
-require './item'
 require './src/author'
+require './src/genre'
 
 ONE_YEAR = 60 * 60 * 24 * 365
 
@@ -8,7 +8,6 @@ def test_archivable(item, expect)
   item.move_to_archive
   expect(item.archived).to be(expect)
 end
-require './music_album'
 
 RSpec.configure do |config|
   config.formatter = :documentation
