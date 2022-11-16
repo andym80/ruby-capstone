@@ -73,7 +73,6 @@ class Main
     Date.parse(input_date)
   end
 
-
   def choose_title_input
     puts 'please intoduce a title'
     gets.chomp

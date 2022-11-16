@@ -42,7 +42,7 @@ class App
   end
 
   def singleplayer_or_multiplayer(is_multiplayer)
-    is_multiplayer ? 'multiplayer': 'singleplayer_or_multiplayer'
+    is_multiplayer ? 'multiplayer' : 'singleplayer_or_multiplayer'
   end
 
   def all_games_list_str
