@@ -6,11 +6,11 @@ class MusicAlbum < Item
 
   def initialize( # rubocop:disable Metrics/ParameterLists
     title,
-		genre,
-		author,
-		source,
-		label,
-		publish_date,
+    genre,
+    author,
+    source,
+    label,
+    publish_date,
     on_spotify
   )
     super(title, genre, author, source, label, publish_date)
