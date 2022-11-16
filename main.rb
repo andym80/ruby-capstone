@@ -54,7 +54,7 @@ class Main
 
       puts 'plase choose a author form the list bellow or add a new one with the letter [A] '
       @app.authors.each_with_index do |author, index|
-        puts "[#{index}] #{author}"
+        puts "[#{index}] #{author.to_s_full_name}"
       end
       option = gets.chomp.downcase
       return @app.authors[option.to_i] if valid_list_option?(option, @app.authors)
@@ -101,6 +101,11 @@ class Main
 		@app.add_game(item_map, multiplayer, last_played_at)
 	end
 
+	def press_enter_message
+		puts "Press ENTER to continue\n"
+		gets
+	end
+
   # rubocop:disable Metrics/BlockLength
   def run
     loop do
@@ -114,12 +119,14 @@ class Main
         raise NotImplementedError, "#{self.class} has not implemented method 'List all movies'"
       when '4' # CASE [4] List of games
         puts @app.all_games_list_str
+				press_enter_message
       when '5' # CASE [5] List all genres
         raise NotImplementedError, "#{self.class} has not implemented method 'List all genres'"
       when '6' # CASE [6] List all labels
         raise NotImplementedError, "#{self.class} has not implemented method 'List all labels'"
       when '7' # CASE [7] List all authors
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all authors'"
+				puts @app.all_authors_list_str
+				press_enter_message
       when '8' # CASE [8] List all sources
         raise NotImplementedError, "#{self.class} has not implemented method 'List all sources'"
       when '9' # CASE [9] Add a book

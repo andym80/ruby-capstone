@@ -31,10 +31,21 @@ class App
 
   end
 
+	def all_authors_list_str
+		list_str = "list of all autors:\n"
+		@authors.each_with_index do |author, authors_index|
+			list_str += "  [#{authors_index}] #{author.to_s_full_name} author of:\n"
+			author.items.each_with_index do |item, items_index|
+				list_str += "    [#{items_index}] #{item.id}\n"
+			end
+		end
+		list_str
+	end
+
 	def all_games_list_str
-		list_str = ''
+		list_str = "list of all Game:\n"
 		@games.each_with_index do |game, index|
-			list_str += "[#{index}] #{game}"
+			list_str += "[#{index}] #{game.id}\n"
 		end
 		list_str
 	end

@@ -21,7 +21,7 @@ class Author
     item.author = self
   end
 
-  def to_s
+  def to_s_full_name
     "#{first_name} #{last_name}"
   end
 end
