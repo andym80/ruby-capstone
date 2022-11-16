@@ -1,4 +1,3 @@
-
 require_relative 'music_album'
 
 module AllMusicAlbums
