@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 require './src/item'
 require 'date'
 
-describe Item do # rubocop:disable Metrics/BlockLength
+describe Item do
   before :each do
     base_author = Author.new('first_name', 'last_name')
 
