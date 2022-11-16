@@ -76,7 +76,7 @@ class Main
   end
 
   def choose_genre_input
-    choose_from_list(@app.authors, 'genre', method(:input_genre))
+    choose_from_list(@app.genres, 'genre', method(:input_genre))
   end
 
   def choose_date_input(date_for)
@@ -109,12 +109,17 @@ class Main
     rtn_obj
   end
 
+  def true_or_false_question(question)
+    puts "#{question} [Y]"
+    option = gets.chomp.downcase
+
+    option == 'y'
+  end
+
   def input_game_option
     item_map = input_item_obj
 
-    puts 'is multiplayer? [Y]'
-    option = gets.chomp.downcase
-    multiplayer = option == 'y'
+    multiplayer = true_or_false_question 'is multiplayer?'
 
     last_played_at = choose_date_input 'last played at'
 
@@ -127,6 +132,22 @@ class Main
       item_map[:publish_date],
       multiplayer,
       last_played_at
+    )
+  end
+
+  def input_album_option
+    item_map = input_item_obj
+
+    on_spotify = true_or_false_question 'is on spotify?'
+
+    @app.add_albums(
+      item_map[:title],
+      item_map[:genre],
+      item_map[:author],
+      item_map[:source],
+      item_map[:label],
+      item_map[:publish_date],
+      on_spotify
     )
   end
 
@@ -163,7 +184,7 @@ class Main
       when '9' # CASE [9] Add a book
         raise NotImplementedError, "#{self.class} has not implemented method 'Add a book'"
       when '10' # CASE [10] Add a music album
-        raise NotImplementedError, "#{self.class} has not implemented method 'Add a music album'"
+        input_album_option
       when '11' # CASE [11] Add a movie
         raise NotImplementedError, "#{self.class} has not implemented method 'Add a movie'"
       when '12' # CASE [12] Add a game

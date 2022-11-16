@@ -15,4 +15,8 @@ class Genre
     items.push(item)
     item.genre = self
   end
+
+  def to_s
+    name
+  end
 end
