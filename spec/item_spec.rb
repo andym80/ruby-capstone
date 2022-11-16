@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 require './src/item'
 require 'date'
 
-describe Item do
+describe Item do # rubocop:disable Metrics/BlockLength
   before :each do
     base_author = Author.new('first_name', 'last_name')
 
@@ -12,7 +12,7 @@ describe Item do
       base_author,
       'source',
       'label',
-      DateTime.now - (ONE_YEAR * 15)
+      Date.now - (ONE_YEAR * 15)
     )
     @non_archivable_item = Item.new(
       'title',
@@ -20,7 +20,7 @@ describe Item do
       base_author,
       'source',
       'label',
-      DateTime.now - (ONE_YEAR * 5)
+      Date.now - (ONE_YEAR * 5)
     )
   end
 
