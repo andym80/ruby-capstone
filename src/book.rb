@@ -13,10 +13,10 @@ class Book < Item
     @cover_state = cover_state
   end
 
-  def self.add_book(label, publisher, author_first_name, author_last_name)
+  def self.add_book(label, publisher, author)
     new_book = Book.new(label, publisher)
     print "The book '#{label.upcase}' by #{publisher.upcase} was created successfully!"
-    new_author = Author.new(author_first_name, author_last_name)
+    new_author = Author.new(author)
     new_author.add_item(new_book)
 
     new_book

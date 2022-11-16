@@ -1,4 +1,5 @@
 require 'securerandom'
+require_relative '../src/item'
 
 class Label
   attr_accessor :title, :color
@@ -9,10 +10,6 @@ class Label
     @color = color
     @id = id
     @items = []
-  end
-
-  def add_item(item)
-    @items << item
   end
 
   def self.list_labels(things)
@@ -44,4 +41,10 @@ class Label
   def list_items_by_author_and_publisher_and_genre(author, publisher, genre)
     @items.select { |item| item.author == author && item.source == publisher && item.genre == genre }
   end
+end
+
+def add_label(label, color)
+  new_label = Label.new(label, color)
+  puts "The label '#{label.upcase}' was created successfully!"
+  new_label
 end
