@@ -55,7 +55,7 @@ class Main
     option.match?(/\A\d+\z/) && (option.to_i >= 0) && (option.to_i < list.length)
   end
 
-	def choose_from_list(list, prop_name, input_method)
+  def choose_from_list(list, prop_name, input_method)
     loop do
       return input_method.call if list.empty?
 
@@ -69,16 +69,15 @@ class Main
 
       puts_not_valit_option option
     end
-
-	end
-
-  def choose_author_input
-		choose_from_list(@app.authors, 'author', method(:input_author))
   end
 
-	def choose_genre_input
-		choose_from_list(@app.authors, 'genre', method(:input_genre))
-	end
+  def choose_author_input
+    choose_from_list(@app.authors, 'author', method(:input_author))
+  end
+
+  def choose_genre_input
+    choose_from_list(@app.authors, 'genre', method(:input_genre))
+  end
 
   def choose_date_input(date_for)
     input_date = ''
@@ -120,15 +119,15 @@ class Main
     last_played_at = choose_date_input 'last played at'
 
     @app.add_game(
-			item_map[:title],
-			item_map[:genre],
-			item_map[:author],
-			item_map[:source],
-			item_map[:label],
-			item_map[:publish_date],
-			multiplayer,
-			last_played_at
-		)
+      item_map[:title],
+      item_map[:genre],
+      item_map[:author],
+      item_map[:source],
+      item_map[:label],
+      item_map[:publish_date],
+      multiplayer,
+      last_played_at
+    )
   end
 
   def press_enter_message

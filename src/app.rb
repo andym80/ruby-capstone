@@ -48,16 +48,16 @@ class App
     list_str
   end
 
-  def add_game(  # rubocop:disable Metrics/ParameterLists
-      title,
-      genre,
-      author,
-      source,
-      label,
-      publish_date,
-      multiplayer,
-      last_played_at
-    )
+  def add_game( # rubocop:disable Metrics/ParameterLists
+    title,
+    genre,
+    author,
+    source,
+    label,
+    publish_date,
+    multiplayer,
+    last_played_at
+  )
     @games.push(Game.new(
                   title,
                   genre,
@@ -87,28 +87,28 @@ class App
   def all_albums_list_str
     rtn_str = "list of all albums:\n"
     @albums.each_with_index do |album, index|
-      list_str += "[#{index}] '#{album.title}' Author: #{album.author}\n"
+      rtn_str += "[#{index}] '#{album.title}' Author: #{album.author}\n"
     end
     rtn_str
   end
 
   def add_albums( # rubocop:disable Metrics/ParameterLists
-      title,
-      genre,
-      author,
-      source,
-      label,
-      publish_date,
-      on_spotify
+    title,
+    genre,
+    author,
+    source,
+    label,
+    publish_date,
+    on_spotify
   )
     @albums.push(MusicAlbum.new(
-                  title,
-                  genre,
-                  author,
-                  source,
-                  label,
-                  publish_date,
-                  on_spotify
-                ))
+                   title,
+                   genre,
+                   author,
+                   source,
+                   label,
+                   publish_date,
+                   on_spotify
+                 ))
   end
 end
