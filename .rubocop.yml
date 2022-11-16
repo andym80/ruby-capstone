@@ -17,7 +17,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  IgnoredMethods: ['describe']
+  AllowedMethods: ['describe']
   Max: 30
 
 Style/Documentation:
@@ -70,5 +70,5 @@ Style/OptionalArguments:
   Enabled: false
 
 # DISABLE CRLF for windows systems
-Layout/EndOfLine:
-  EnforcedStyle: lf
+  Layout/EndOfLine:
+   Enabled: False

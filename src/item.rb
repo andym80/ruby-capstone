@@ -1,5 +1,3 @@
-require 'date'
-
 class Item
   @next_item_id = 0
 
@@ -21,7 +19,7 @@ class Item
   end
 
   def can_be_archived?
-    publish_date < (DateTime.now - (60 * 60 * 24 * 365 * 10))
+    publish_date < (Time.now - (60 * 60 * 24 * 365 * 10))
   end
 
   def move_to_archive
@@ -29,5 +27,23 @@ class Item
     @archived
   end
 
-  private :can_be_archived?
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'genre' => @genre,
+      'author' => @author,
+      'source' => @source,
+      'label' => @label,
+      'publish_date' => @publish_date,
+      'archived' => @archived
+    }.to_json(*args)
+  end
+end
+
+private :can_be_archived?
+
+def self.json_create(object)
+  item = new(object['genre'], object['author'], object['source'], object['label'], object['publish_date'])
+  item.archived = object['archived']
+  item
 end
