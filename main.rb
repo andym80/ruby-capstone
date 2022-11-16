@@ -35,6 +35,13 @@ class Main
     option
   end
 
+  def input_genre
+    puts 'please write Genre name'
+    name = gets.chomp
+
+    @app.add_genre(name)
+  end
+
   def input_author
     puts 'please write Author first name'
     first_name = gets.chomp
@@ -48,21 +55,30 @@ class Main
     option.match?(/\A\d+\z/) && (option.to_i >= 0) && (option.to_i < list.length)
   end
 
-  def choose_author_input
+	def choose_from_list(list, prop_name, input_method)
     loop do
-      return input_author if @app.authors.empty?
+      return input_method.call if list.empty?
 
-      puts 'plase choose a author form the list bellow or add a new one with the letter [A] '
-      @app.authors.each_with_index do |author, index|
-        puts "[#{index}] #{author.to_s_full_name}"
+      puts "plase choose a #{prop_name} form the list bellow or add a new one with the letter [A] "
+      list.each_with_index do |item, index|
+        puts "[#{index}] #{item}"
       end
       option = gets.chomp.downcase
-      return @app.authors[option.to_i] if valid_list_option?(option, @app.authors)
-      return input_author if option == 'a'
+      return list[option.to_i] if valid_list_option?(option, list)
+      return input_method.call if option == 'a'
 
       puts_not_valit_option option
     end
+
+	end
+
+  def choose_author_input
+		choose_from_list(@app.authors, 'author', method(:input_author))
   end
+
+	def choose_genre_input
+		choose_from_list(@app.authors, 'genre', method(:input_genre))
+	end
 
   def choose_date_input(date_for)
     input_date = ''
@@ -85,7 +101,7 @@ class Main
     puts 'WARNING W.I.P'
 
     rtn_obj[:title] = choose_title_input
-    rtn_obj[:genre] = 'choose_genre_input'
+    rtn_obj[:genre] = choose_genre_input
     rtn_obj[:author] = choose_author_input
     rtn_obj[:source] = 'choose_source_input'
     rtn_obj[:label] = 'choose_label_input'
@@ -97,13 +113,22 @@ class Main
   def input_game_option
     item_map = input_item_obj
 
-    puts 'is multiplayer [Y/n]'
+    puts 'is multiplayer? [Y]'
     option = gets.chomp.downcase
     multiplayer = option == 'y'
 
     last_played_at = choose_date_input 'last played at'
 
-    @app.add_game(item_map, multiplayer, last_played_at)
+    @app.add_game(
+			item_map[:title],
+			item_map[:genre],
+			item_map[:author],
+			item_map[:source],
+			item_map[:label],
+			item_map[:publish_date],
+			multiplayer,
+			last_played_at
+		)
   end
 
   def press_enter_message
@@ -119,14 +144,16 @@ class Main
       when '1' # CASE [1] List all books
         raise NotImplementedError, "#{self.class} has not implemented method 'List all books'"
       when '2' # CASE [2] List all music albums
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all music albums'"
+        puts @app.all_albums_list_str
+        press_enter_message
       when '3' # CASE [3] List all movies
         raise NotImplementedError, "#{self.class} has not implemented method 'List all movies'"
       when '4' # CASE [4] List of games
         puts @app.all_games_list_str
         press_enter_message
       when '5' # CASE [5] List all genres
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all genres'"
+        puts @app.all_genres_list_str
+        press_enter_message
       when '6' # CASE [6] List all labels
         raise NotImplementedError, "#{self.class} has not implemented method 'List all labels'"
       when '7' # CASE [7] List all authors
