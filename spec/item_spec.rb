@@ -7,6 +7,7 @@ describe Item do
     base_author = Author.new('first_name', 'last_name')
 
     @archivable_item = Item.new(
+      'title',
       'genre',
       base_author,
       'source',
@@ -14,6 +15,7 @@ describe Item do
       DateTime.now - (ONE_YEAR * 15)
     )
     @non_archivable_item = Item.new(
+      'title',
       'genre',
       base_author,
       'source',

@@ -6,6 +6,7 @@ describe Author do
     @final_author = Author.new('final_author_first_name', 'final_author_last_name')
 
     @base_item = Item.new(
+      'title',
       'genre',
       @initial_author,
       'source',
@@ -41,6 +42,7 @@ describe Author do
   context 'author can have more that one item' do
     before :each do
       @other_item = Item.new(
+        'title',
         'genre',
         @initial_author,
         'source',
