@@ -1,28 +1,33 @@
 require_relative './item'
+require_relative './author'
+require 'json'
+require 'date'
 
-class Book < Item > # Book class inherits from the Item class
-  attr_accessor :publisher, :cover_state, :id
+# disable: Metrics/ClassLength
+class Book < Item
+  attr_accessor :publisher, :cover_state
 
-  def initialize(publisher, cover_state, *args)
-	super(*args) # call the parent class's constructor
-	@publisher = publisher
-	@cover_state = cover_state
+  def initialize(genre, author, source, label, publish_date, publisher, cover_state) # rubocop:disable Metrics/ParameterLists
+    super(genre, author, source, label, publish_date)
+    @publisher = publisher
+    @cover_state = cover_state
   end
 
-def self.list_books(books)
-	books.each_with_index do |book, index|
-		if book_instance_of? Book
-			puts "[#{index}] The Book: #{book.cover_state} by #{book.author.first_name} #{book.author.last_name} has been Published by #{book.publisher} on #{book.publish_date}"
-		end
-	end
-end
+  def self.list_books(books)
+    books.each_with_index do |book, index|
+      if book_instance_of? Book
+        puts "[#{index}] The Book: #{book.cover_state} by #{book.author.first_name}
+         #{book.author.last_name} has been Published by #{book.publisher} on #{book.publish_date}"
+      end
+    end
+  end
 
-def self.add_book
-	print 'Author\'s first name?'
+  def self.add_book
+    print 'Author\'s first name?'
     print "\nAnswer: "
     author_first_name = gets.chomp
 
-	print "\nType a Cover State of the Book: "
+    print "\nType a Cover State of the Book: "
     cover_state = gets.chomp
     print "\nType the Name of the publisher: "
     publisher = gets.chomp
@@ -50,8 +55,6 @@ def self.add_book
   private
 
   def can_be_archived?
-	super  @cover_state == 'bad'
+    super @cover_state == 'bad'
   end
-
-
 end
