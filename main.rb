@@ -64,47 +64,46 @@ class Main
     end
   end
 
-	def choose_date_input (date_for)
-		input_date = ""
-		until Date.parsable?(input_date)
-			puts "Please Input a date (YYYY-MM-DD) for #{date_for}"
-			input_date = gets.chomp.downcase
-		end
-		Date.parse(input_date)
-	end
-
-
-	# input for (genre, author, source, label, publish_date) return a map
-  def input_item_obj
-		rtn_obj = {}
-
-		puts 'WARNING W.I.P'
-
-		rtn_obj[:genre] = 'choose_genre_input'
-		rtn_obj[:author] = choose_author_input
-		rtn_obj[:source] = 'choose_source_input'
-		rtn_obj[:label] = 'choose_label_input'
-		rtn_obj[:publish_date] = choose_date_input 'date of publish'
-
-		rtn_obj
+  def choose_date_input(date_for)
+    input_date = ''
+    until Date.parsable?(input_date)
+      puts "Please Input a date (YYYY-MM-DD) for #{date_for}"
+      input_date = gets.chomp.downcase
+    end
+    Date.parse(input_date)
   end
 
-	def input_game_option
-		item_map = input_item_obj
+  # input for (genre, author, source, label, publish_date) return a map
+  def input_item_obj
+    rtn_obj = {}
 
-		puts 'is multiplayer [Y/n]'
-		option = gets.chomp.downcase
+    puts 'WARNING W.I.P'
+
+    rtn_obj[:genre] = 'choose_genre_input'
+    rtn_obj[:author] = choose_author_input
+    rtn_obj[:source] = 'choose_source_input'
+    rtn_obj[:label] = 'choose_label_input'
+    rtn_obj[:publish_date] = choose_date_input 'date of publish'
+
+    rtn_obj
+  end
+
+  def input_game_option
+    item_map = input_item_obj
+
+    puts 'is multiplayer [Y/n]'
+    option = gets.chomp.downcase
     multiplayer = option == 'y'
 
     last_played_at = choose_date_input 'last played at'
 
-		@app.add_game(item_map, multiplayer, last_played_at)
-	end
+    @app.add_game(item_map, multiplayer, last_played_at)
+  end
 
-	def press_enter_message
-		puts "Press ENTER to continue\n"
-		gets
-	end
+  def press_enter_message
+    puts "Press ENTER to continue\n"
+    gets
+  end
 
   # rubocop:disable Metrics/BlockLength
   def run
@@ -119,14 +118,14 @@ class Main
         raise NotImplementedError, "#{self.class} has not implemented method 'List all movies'"
       when '4' # CASE [4] List of games
         puts @app.all_games_list_str
-				press_enter_message
+        press_enter_message
       when '5' # CASE [5] List all genres
         raise NotImplementedError, "#{self.class} has not implemented method 'List all genres'"
       when '6' # CASE [6] List all labels
         raise NotImplementedError, "#{self.class} has not implemented method 'List all labels'"
       when '7' # CASE [7] List all authors
-				puts @app.all_authors_list_str
-				press_enter_message
+        puts @app.all_authors_list_str
+        press_enter_message
       when '8' # CASE [8] List all sources
         raise NotImplementedError, "#{self.class} has not implemented method 'List all sources'"
       when '9' # CASE [9] Add a book

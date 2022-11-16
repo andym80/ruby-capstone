@@ -2,11 +2,9 @@ require 'date'
 
 class Date
   def self.parsable?(string)
-    begin
-      parse(string)
-      true
-    rescue ArgumentError
-      false
-    end
+    parse(string)
+    true
+  rescue ArgumentError
+    false
   end
 end
