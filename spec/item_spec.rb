@@ -1,21 +1,21 @@
 require_relative 'spec_helper'
 require 'date'
 
-describe Item do
+describe Item do # rubocop:disable Metrics/BlockLength
   before :each do
     @archivable_item = Item.new(
       'genre',
       'author',
       'source',
       'label',
-      DateTime.now - (60 * 60 * 24 * 365 * 15)
+      Time.now - (60 * 60 * 24 * 365 * 15)
     )
     @non_archivable_item = Item.new(
       'genre',
       'author',
       'source',
       'label',
-      DateTime.now - (60 * 60 * 24 * 365 * 5)
+      Time.now - (60 * 60 * 24 * 365 * 5)
     )
   end
 
