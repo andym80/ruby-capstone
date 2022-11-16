@@ -1,5 +1,6 @@
-require_relative 'item'
+require_relative './item'
 require 'secure_random'
+require 'json'
 
 class Genre
   attr_accesor :id, :name, :items, :add_item
