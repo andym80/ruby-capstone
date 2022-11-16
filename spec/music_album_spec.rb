@@ -1,16 +1,27 @@
-require 'rspec'
-require_relative '../music_album'
+require './src/music_album'
 
-RSpec.describe 'label' do
-  it 'returns the correct label' do
-    album = MusicAlbum.new('Nocturne', 'Chopin', 'source', 'classic', 1832, 'Y')
-    expect(album.label).to eql 'Nocturne'
-  end
+def build_test_albun(publish_date_from_now, on_spotify)
+  base_author = Author.new('first_name', 'last_name')
+
+  MusicAlbum.new(
+    'title',
+    'genre',
+    base_author,
+    'source',
+    'label',
+    DateTime.now - publish_date_from_now,
+    on_spotify
+  )
 end
 
-describe 'author' do
-  it 'returns the correct author' do
-    album = MusicAlbum.new('Nocturne', 'Chopin', 'source', 'classic', 1832, 'Y')
-    expect(album.author).to eql 'Chopin'
+describe MusicAlbum do
+  context 'Initialization' do
+    before :each do
+      @album = build_test_albun(ONE_YEAR * 15, true)
+    end
+
+    it 'has on spotyfy true' do
+      expect(@album.on_spotify).to be(true)
+    end
   end
 end
