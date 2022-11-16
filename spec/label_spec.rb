@@ -22,3 +22,12 @@ describe Label do
     end
   end
 end
+
+def to_json(*args)
+  {
+    JSON.create_id => self.class.name,
+    'title' => @title,
+    'color' => @color,
+    'id' => @id
+  }.to_json(*args)
+end
