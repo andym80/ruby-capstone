@@ -11,7 +11,7 @@ class Book < Item
   attr_accessor :publisher, :cover_state
   attr_reader :author, :genre, :source, :publish_date
 
-  def initialize(
+  def initialize( # rubocop:disable Metrics/ParameterLists
     title,
     genre,
     author,
@@ -22,6 +22,7 @@ class Book < Item
     cover_state = 'good'
   )
     super(title, genre, author, source, label, publish_date)
+    @title = title
     @publisher = publisher
     @cover_state = cover_state
     @author = author
@@ -48,35 +49,6 @@ class Book < Item
       'publisher' => @publisher,
       'cover_state' => @cover_state
     }.to_json(*args)
-  end
-
-  def self.list_books_by_publisher(publisher)
-    @items.select { |item| item.source == publisher }
-  end
-
-  def self.list_books_by_author(author)
-    @items.select { |item| item.author == author }
-  end
-
-  def self.list_books_by_author_and_publisher(author, publisher)
-    @items.select { |item| item.author == author && item.source == publisher }
-  end
-
-  def self.list_books_by_genre(genre)
-    @items.select { |item| item.genre == genre }
-  end
-
-  def self.list_books_by_author_and_publisher_and_genre(author, publisher, genre)
-    @items.select { |item| item.author == author && item.source == publisher && item.genre == genre }
-  end
-
-  def self.list_books(books)
-    books.each_with_index do |book, index|
-      if book_instance_of? Book
-        puts "[#{index}] The Book: #{book.cover_state} by #{book.author.first_name}
-         #{book.author.last_name} has been Published by #{book.publisher} on #{book.publish_date}"
-      end
-    end
   end
 
   private

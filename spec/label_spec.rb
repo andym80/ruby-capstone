@@ -5,8 +5,11 @@ require_relative '../src/item'
 require 'json'
 
 describe Label do
-  let(:label) { Label.new('The Label', 'The Color') }
-  let(:item) { Item.new('The Item', 'The Publisher') }
+  def build_test_label
+    before :each do
+      @label = Label.new('test label', 'test color')
+    end
+  end
 
   context 'Label' do
     it 'has a title' do

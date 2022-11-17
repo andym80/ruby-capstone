@@ -3,7 +3,7 @@ require './src/item'
 require './src/author'
 require 'date'
 
-describe Item do
+describe Item do # rubocop:disable Metrics/BlockLength
   before :each do
     base_author = Author.new('first_name', 'last_name')
     base_genre = Genre.new('test genre')

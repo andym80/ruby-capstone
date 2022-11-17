@@ -7,32 +7,24 @@ require 'date'
 require 'json'
 require 'securerandom'
 
-# disable: Metrics/ClassLength
-
 describe Book do
-  let(:title) { 'The Book' }
-  let(:genre) { Genre.new('The Genre') }
-  let(:author) { Author.new('The Author First Name', 'Last Name') }
-  let(:source) { 'The Source' }
-  let(:label) { Label.new('The Label', 'The Color') }
-  let(:publish_date) { Date.new(2005, 1, 1) }
-  let(:publisher) { 'The Publisher' }
-  let(:cover_state) { 'The Cover State' }
-  let(:book) do
-    Book.new(
-      title,
-      genre,
-      author,
-      source,
-      label,
-      publish_date,
-      publisher,
-      cover_state
-    ) end
+  def build_test_book
+    before :each do
+      @book = Book.new(
+        'The Book',
+        'The Genre',
+        'The Author',
+        'The Source',
+        'The Label',
+        Date.today,
+        'The Publisher'
+      )
+    end
+  end
 
-  context 'Initilize' do
+  context 'Initialize' do
     it 'has a title' do
-      expect(book.title).to eq('The Book')
+      expect(@book.title).to eq('The Book')
     end
 
     it 'has a publisher' do
