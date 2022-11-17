@@ -13,11 +13,12 @@ class Book < Item
 
   def initialize(
     title,
-    publisher,
+    genre,
     author,
     source,
     label,
     publish_date,
+    publisher,
     cover_state = 'good'
   )
     super(title, genre, author, source, label, publish_date)
