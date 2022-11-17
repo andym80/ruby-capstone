@@ -39,7 +39,6 @@ class Book < Item
     print "The book '#{label.upcase}' by #{publisher.upcase} was created successfully!"
     new_author = Author.new(author)
     new_author.add_item(new_book)
-
     new_book
   end
 

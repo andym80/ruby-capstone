@@ -31,7 +31,7 @@ describe Game do
     end
   end
 
-  context 'non_archivable_games' do
+  context 'non_archivable_games' do # rubocop:disable Metrics/BlockLength
     before :each do
       @non_archivable_game_by_publish_date = build_test_game(
         ONE_YEAR * 5,
