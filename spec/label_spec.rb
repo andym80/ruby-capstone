@@ -5,23 +5,21 @@ require_relative '../src/item'
 require 'json'
 
 describe Label do
-  def build_test_label
     before :each do
-      @label = Label.new('test label', 'test color')
+      @label = Label.new('The Label', 'The Color')
     end
-  end
 
   context 'Label' do
     it 'has a title' do
-      expect(label.title).to eq('The Label')
+      expect(@label.title).to eq('The Label')
     end
 
     it 'has a color' do
-      expect(label.color).to eq('The Color')
+      expect(@label.color).to eq('The Color')
     end
 
     it 'can be created' do
-      expect(label).to be_a(Label)
+      expect(@label).to be_a(Label)
     end
   end
 end

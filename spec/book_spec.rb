@@ -8,19 +8,21 @@ require 'json'
 require 'securerandom'
 
 describe Book do
-  def build_test_book
     before :each do
+			base_author = Author.new('first_name', 'last_name')
+			base_genre = Genre.new('test genre')
+			base_label = Label.new('The Label', 'The Color')
+
       @book = Book.new(
         'The Book',
-        'The Genre',
-        'The Author',
+        base_genre,
+        base_author,
         'The Source',
-        'The Label',
+        base_label,
         Date.today,
         'The Publisher'
       )
     end
-  end
 
   context 'Initialize' do
     it 'has a title' do
@@ -28,23 +30,22 @@ describe Book do
     end
 
     it 'has a publisher' do
-      expect(book.publisher).to eq('The Publisher')
+      expect(@book.publisher).to eq('The Publisher')
     end
 
     it 'has a cover state' do
-      expect(book.cover_state).to eq('The Cover State')
-      puts 'The cover is bad' if book.cover_state == 'bad'
+      expect(@book.cover_state).to eq('good')
     end
 
     it 'can be created' do
-      expect(book).to be_a(Book)
+      expect(@book).to be_a(Book)
     end
   end
 
   context 'move_to_archive' do
     it 'can be archived' do
-      book.move_to_archive
-      expect(book.archived).to eq(false)
+      @book.move_to_archive
+      expect(@book.archived).to eq(false)
     end
   end
 end

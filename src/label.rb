@@ -12,16 +12,9 @@ class Label
     @color = color
     @id = id
     @items = []
-    Label.add_item(self)
   end
 
   def add_item(item)
-    @items << item
-    item.label = self
-  end
-
-  def self.add_item(item)
-    @items ||= []
     @items << item
     item.label = self
   end

@@ -5,13 +5,14 @@ describe Author do
     @initial_author = Author.new('initial_author_first_name', 'initial_author_last_name')
     @final_author = Author.new('final_author_first_name', 'final_author_last_name')
     @base_genre = Genre.new('test genre')
+		@base_label = Label.new('The Label', 'The Color')
 
     @base_item = Item.new(
       'title',
       @base_genre,
       @initial_author,
       'source',
-      'label',
+      @base_label,
       DateTime.now - (60 * 60 * 24 * 365 * 15)
     )
   end
@@ -47,7 +48,7 @@ describe Author do
         @base_genre,
         @initial_author,
         'source',
-        'label',
+        @base_label,
         DateTime.now - (60 * 60 * 24 * 365 * 15)
       )
     end

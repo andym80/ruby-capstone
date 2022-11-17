@@ -1,19 +1,20 @@
 require_relative 'spec_helper'
 require './src/item'
 require './src/author'
+require './src/label'
 require 'date'
 
 describe Item do # rubocop:disable Metrics/BlockLength
   before :each do
     base_author = Author.new('first_name', 'last_name')
     base_genre = Genre.new('test genre')
-
+    base_label = Label.new('The Label', 'The Color')
     @archivable_item = Item.new(
       'title',
       base_genre,
       base_author,
       'source',
-      'label',
+      base_label,
       Date.new - (ONE_YEAR * 15)
     )
     @non_archivable_item = Item.new(
@@ -21,7 +22,7 @@ describe Item do # rubocop:disable Metrics/BlockLength
       base_genre,
       base_author,
       'source',
-      'label',
+      base_label,
       Date.new - (ONE_YEAR * 5)
     )
   end
