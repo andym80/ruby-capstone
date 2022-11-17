@@ -2,15 +2,34 @@ require_relative './item'
 require_relative './author'
 require 'json'
 require 'date'
+require_relative '../src/label.rb'
+require 'securerandom'
+require_relative '../src/item'
 
 # disable: Metrics/ClassLength
 class Book < Item
   attr_accessor :publisher, :cover_state
+  attr_reader :author, :genre, :source, :publish_date
 
-  def initialize(publisher, cover_state)
-    super(genre, author, source, label, publish_date)
+  def initialize(
+    title,
+    publisher,
+    author,
+    source,
+    label,
+    publish_date,
+    cover_state = 'good'
+  )
+    super(title, genre, author, source, label, publish_date)
     @publisher = publisher
     @cover_state = cover_state
+    @author = author
+    @genre = genre
+    @source = source
+    @label = label
+    @publish_date = publish_date
+    @id = SecureRandom.random_number(1_000)
+    @items = []
   end
 
   def self.add_book(label, publisher, author)

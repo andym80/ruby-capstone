@@ -86,6 +86,10 @@ end
 
 def list_books(books)
   books.each_with_index do |book, index|
-    puts "[#{index}] The Book: #{book.title} by #{book.author} has been Published by #{book.publisher} on #{book.publish_date}"
+    puts "[#{index}]
+	The Book: #{book.title}
+	by #{book.author}
+	has been Published by #{book.publisher}
+	on #{book.publish_date}"
   end
 end
