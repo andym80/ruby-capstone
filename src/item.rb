@@ -29,7 +29,7 @@ class Item
   end
 
   def can_be_archived?
-    publish_date < (Date.now - TEN_YEARS)
+    publish_date < (Date.new - TEN_YEARS)
   end
 
   def move_to_archive

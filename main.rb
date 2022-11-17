@@ -1,3 +1,5 @@
+require 'book_ui'
+
 class Main
   def puts_options
     puts ' - [1] List all books'
