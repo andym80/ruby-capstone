@@ -1,5 +1,5 @@
-require './src/item'
 require './src/author'
+require './src/genre'
 
 ONE_YEAR = 60 * 60 * 24 * 365
 
