@@ -193,7 +193,7 @@ class Main # rubocop:disable Metrics/ClassLength
         puts "Exit\n"
         break
       else
-        puts_not_valit_option option
+        puts_not_valid_option option
       end
     end
   end

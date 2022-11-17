@@ -4,13 +4,14 @@ require 'spec_helper'
 def build_test_albun(publish_date_from_now, on_spotify)
   base_author = Author.new('first_name', 'last_name')
   base_genre = Genre.new('test genre')
+  base_label = Label.new('The Label', 'The Color')
 
   MusicAlbum.new(
     'title',
     base_genre,
     base_author,
     'source',
-    'label',
+    base_label,
     DateTime.now - publish_date_from_now,
     on_spotify
   )

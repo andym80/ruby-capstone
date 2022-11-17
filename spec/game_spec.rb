@@ -1,18 +1,20 @@
 require_relative 'spec_helper'
 require './src/game'
 require 'date'
+require './src/label'
 
 describe Game do
   def build_test_game(publish_date_from_now, multiplayer, last_played_at_from_now)
     base_author = Author.new('first_name', 'last_name')
     base_genre = Genre.new('test genre')
+    base_label = Label.new('The Label', 'The Color')
 
     Game.new(
       'title',
       base_genre,
       base_author,
       'source',
-      'label',
+      base_label,
       DateTime.now - publish_date_from_now,
       multiplayer,
       DateTime.now - last_played_at_from_now
@@ -29,7 +31,7 @@ describe Game do
     end
   end
 
-  context 'non_archivable_games' do
+  context 'non_archivable_games' do # rubocop:disable Metrics/BlockLength
     before :each do
       @non_archivable_game_by_publish_date = build_test_game(
         ONE_YEAR * 5,

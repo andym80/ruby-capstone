@@ -1,4 +1,7 @@
 require 'date'
+require 'json'
+require 'securerandom'
+require 'time'
 
 TEN_YEARS = 60 * 60 * 24 * 365 * 10
 
@@ -24,10 +27,11 @@ class Item
 
     author.add_item(self)
     genre.add_item(self)
+    label.add_item(self)
   end
 
   def can_be_archived?
-    publish_date < (DateTime.now - TEN_YEARS)
+    publish_date < (Date.new - TEN_YEARS)
   end
 
   def move_to_archive
@@ -35,5 +39,23 @@ class Item
     @archived
   end
 
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'genre' => @genre,
+      'author' => @author,
+      'source' => @source,
+      'label' => @label,
+      'publish_date' => @publish_date,
+      'archived' => @archived
+    }.to_json(*args)
+  end
+
   private :can_be_archived?
+
+  def self.json_create(object)
+    item = new(object['genre'], object['author'], object['source'], object['label'], object['publish_date'])
+    item.archived = object['archived']
+    item
+  end
 end
