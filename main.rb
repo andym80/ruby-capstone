@@ -1,5 +1,6 @@
 require_relative 'src/app'
 require './helper'
+require './src/book_ui.rb'
 
 class Main # rubocop:disable Metrics/ClassLength
   def initialize()

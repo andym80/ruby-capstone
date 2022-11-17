@@ -14,7 +14,7 @@ describe Item do # rubocop:disable Metrics/BlockLength
       base_author,
       'source',
       'label',
-      Date.now - (ONE_YEAR * 15)
+      Date.new - (ONE_YEAR * 15)
     )
     @non_archivable_item = Item.new(
       'title',
@@ -22,7 +22,7 @@ describe Item do # rubocop:disable Metrics/BlockLength
       base_author,
       'source',
       'label',
-      Date.now - (ONE_YEAR * 5)
+      Date.new - (ONE_YEAR * 5)
     )
   end
 
