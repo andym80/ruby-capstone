@@ -8,21 +8,21 @@ require 'json'
 require 'securerandom'
 
 describe Book do
-    before :each do
-			base_author = Author.new('first_name', 'last_name')
-			base_genre = Genre.new('test genre')
-			base_label = Label.new('The Label', 'The Color')
+  before :each do
+    base_author = Author.new('first_name', 'last_name')
+    base_genre = Genre.new('test genre')
+    base_label = Label.new('The Label', 'The Color')
 
-      @book = Book.new(
-        'The Book',
-        base_genre,
-        base_author,
-        'The Source',
-        base_label,
-        Date.today,
-        'The Publisher'
-      )
-    end
+    @book = Book.new(
+      'The Book',
+      base_genre,
+      base_author,
+      'The Source',
+      base_label,
+      Date.today,
+      'The Publisher'
+    )
+  end
 
   context 'Initialize' do
     it 'has a title' do

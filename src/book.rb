@@ -2,7 +2,7 @@ require_relative './item'
 require_relative './author'
 require 'json'
 require 'date'
-require_relative '../src/label.rb'
+require_relative '../src/label'
 require 'securerandom'
 require_relative '../src/item'
 

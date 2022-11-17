@@ -27,7 +27,7 @@ class Item
 
     author.add_item(self)
     genre.add_item(self)
-		label.add_item(self)
+    label.add_item(self)
   end
 
   def can_be_archived?
