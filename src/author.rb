@@ -24,4 +24,8 @@ class Author
   def to_s_full_name
     "#{first_name} #{last_name}"
   end
+
+  def to_s
+    to_s_full_name
+  end
 end
