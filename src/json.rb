@@ -1,6 +1,10 @@
-require './music_album'
-require './book'
-require './game'
+require_relative 'music_album'
+require_relative 'book'
+require_relative 'game'
+require_relative 'author'
+require_relative 'genre'
+require_relative 'label'
+require 'json'
 
 module PreserveData
   def get_data(file)
@@ -46,16 +50,104 @@ module PreserveData
 
     puts "The book '#{book.title.upcase}' by #{book.author.upcase} was created successfully!"
   end
+
+	def load(_games)
+		get_data('games').map { |game| Game.new(game['title'], game['author']) }
+	end
+
+	def save_games(game)
+		data = get_data('games')
+		data << { title: game.title, author: game.author }
+		data_upgrade('games', data)
+
+		puts "The game '#{game.title.upcase}' by #{game.author.upcase} was created successfully!"
+	end
 end
 
-def load(_games)
-  get_data('games').map { |game| Game.new(game['title'], game['author']) }
+
+@author = [
+	Author.new('Author 0 fn', 'Author 0 ln'),
+	 Author.new('Author 1 fn', 'Author 1 ln'),
+	]
+@genre = [
+	Genre.new('genre 0'),
+	Genre.new('genre 1'),
+	Genre.new('genre 2'),
+]
+@label = [
+	Label.new('The Label', 'The Color'),
+]
+
+@books = [
+	Book.new(
+		'The Book 0',
+		@genre[0],
+		@author[0],
+		'The Source',
+		@label[0],
+		Date.today,
+		'The Publisher'
+	),
+	Book.new(
+		'The Book 1',
+		@genre[1],
+		@author[0],
+		'The Source',
+		@label[0],
+		Date.today,
+		'The Publisher'
+	),
+	Book.new(
+		'The Book 2',
+		@genre[2],
+		@author[1],
+		'The Source',
+		@label[0],
+		Date.today,
+		'The Publisher'
+	)
+]
+
+@games = [
+	Game.new(
+		'Game 0 title',
+		@genre[2],
+		@author[1],
+		'source',
+		@label[0],
+		Date.today ,
+		true,
+		Date.today
+	),
+	Game.new(
+		'Game 1 title',
+		@genre[2],
+		@author[1],
+		'source',
+		@label[0],
+		Date.today,
+		false,
+		Date.today
+	),
+]
+
+
+@albums = [
+	MusicAlbum.new(
+    'MusicAlbum',
+    @genre[2],
+    @author[0],
+    'source',
+    @label[0],
+    Date.today,
+    false
+  )
+]
+
+class Run
+	include PreserveData
 end
 
-def save_games(game)
-  data = get_data('games')
-  data << { title: game.title, author: game.author }
-  data_upgrade('games', data)
+runnn = Run.new()
 
-  puts "The game '#{game.title.upcase}' by #{game.author.upcase} was created successfully!"
-end
+runnn.save_books(@books[0])
