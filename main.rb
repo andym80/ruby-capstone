@@ -104,8 +104,6 @@ class Main # rubocop:disable Metrics/ClassLength
   def input_item_obj
     rtn_obj = {}
 
-    puts 'WARNING W.I.P'
-
     rtn_obj[:title] = please_introduce_input 'title'
     rtn_obj[:genre] = choose_genre_input
     rtn_obj[:author] = choose_author_input
