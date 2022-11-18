@@ -11,7 +11,6 @@ describe Genre do
       'title',
       @initial_genre,
       @base_author,
-      'source',
       @base_label,
       Date.new - (60 * 60 * 24 * 365 * 15)
     )
@@ -47,7 +46,6 @@ describe Genre do
         'title',
         @initial_genre,
         @base_author,
-        'source',
         @base_label,
         Date.new - (60 * 60 * 24 * 365 * 15)
       )

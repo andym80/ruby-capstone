@@ -10,7 +10,6 @@ def build_test_albun(publish_date_from_now, on_spotify)
     'title',
     base_genre,
     base_author,
-    'source',
     base_label,
     Date.new - publish_date_from_now,
     on_spotify

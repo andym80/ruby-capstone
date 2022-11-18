@@ -11,7 +11,6 @@ describe Author do
       'title',
       @base_genre,
       @initial_author,
-      'source',
       @base_label,
       Date.new - (60 * 60 * 24 * 365 * 15)
     )
@@ -47,7 +46,6 @@ describe Author do
         'title',
         @base_genre,
         @initial_author,
-        'source',
         @base_label,
         Date.new - (60 * 60 * 24 * 365 * 15)
       )

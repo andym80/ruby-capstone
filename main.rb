@@ -107,7 +107,6 @@ class Main # rubocop:disable Metrics/ClassLength
     rtn_obj[:title] = please_introduce_input 'title'
     rtn_obj[:genre] = choose_genre_input
     rtn_obj[:author] = choose_author_input
-    rtn_obj[:source] = 'choose_source_input'
     rtn_obj[:label] = choose_label_input
     rtn_obj[:publish_date] = choose_date_input 'date of publish'
 
@@ -136,7 +135,6 @@ class Main # rubocop:disable Metrics/ClassLength
       item_map[:title],
       item_map[:genre],
       item_map[:author],
-      item_map[:source],
       item_map[:label],
       item_map[:publish_date],
       multiplayer,
@@ -155,7 +153,6 @@ class Main # rubocop:disable Metrics/ClassLength
       item_map[:title],
       item_map[:genre],
       item_map[:author],
-      item_map[:source],
       item_map[:label],
       item_map[:publish_date],
       on_spotify
@@ -174,7 +171,6 @@ class Main # rubocop:disable Metrics/ClassLength
       item_map[:title],
       item_map[:genre],
       item_map[:author],
-      item_map[:source],
       item_map[:label],
       item_map[:publish_date],
       publisher,

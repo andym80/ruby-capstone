@@ -7,14 +7,13 @@ TEN_YEARS = 60 * 60 * 24 * 365 * 10
 
 class Item
   attr_reader :archived, :id
-  attr_accessor :genre, :author, :source, :label, :publish_date, :title
+  attr_accessor :genre, :author, :label, :publish_date, :title
 
-  def initialize(title, genre, author, source, label, publish_date, id = SecureRandom.random_number(1000)) # rubocop:disable Metrics/ParameterLists
+  def initialize(title, genre, author, label, publish_date, id = SecureRandom.random_number(1000)) # rubocop:disable Metrics/ParameterLists
     @id = id
     @title = title
     @genre = genre
     @author = author
-    @source = source
     @label = label
     @publish_date = publish_date
     @archived = false
@@ -33,16 +32,16 @@ class Item
     @archived
   end
 
-  def to_json(*args)
+  def to_hash
     {
-      JSON.create_id => self.class.name,
-      'genre' => @genre,
-      'author' => @author,
-      'source' => @source,
-      'label' => @label,
-      'publish_date' => @publish_date,
-      'archived' => @archived
-    }.to_json(*args)
+      'id': @id,
+      'title': @title,
+      'genre': @genre.id,
+      'author': @author.id,
+      'label': @label.id,
+      'publish_date': @publish_date,
+      'archived': @archived
+    }
   end
 
   private :can_be_archived?

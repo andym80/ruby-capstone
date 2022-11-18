@@ -13,7 +13,6 @@ describe Item do
       'title',
       base_genre,
       base_author,
-      'source',
       base_label,
       Date.new - (ONE_YEAR * 15)
     )
@@ -21,7 +20,6 @@ describe Item do
       'title',
       base_genre,
       base_author,
-      'source',
       base_label,
       Date.new - (ONE_YEAR * 5)
     )

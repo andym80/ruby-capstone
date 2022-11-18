@@ -17,7 +17,6 @@ describe Book do
       'The Book',
       base_genre,
       base_author,
-      'The Source',
       base_label,
       Date.today,
       'The Publisher'
