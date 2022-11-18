@@ -92,10 +92,6 @@ CREATE TABLE IF NOT EXISTS public."Games"
 ALTER TABLE IF EXISTS public."Games"
 		OWNER to postgres;
 
--- Table: public.Items
-
--- DROP TABLE IF EXISTS public."Items";
-
 -- Table: public.MusicAlbum
 
 -- DROP TABLE IF EXISTS public."MusicAlbum";
