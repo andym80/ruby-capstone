@@ -51,10 +51,31 @@ module PreserveData
     data_upgrade('books', data)
   end
 
-  def save_music_album(album)
+  def save_albums(album)
     data = get_data('music_album')
     data << album.to_hash
     data_upgrade('music_album', data)
+  end
+
+
+
+
+	def save_authors(author)
+		data = get_data('authors')
+		data << author.to_hash
+		data_upgrade('authors', data)
+	end
+
+  def save_genres(genre)
+    data = get_data('genres')
+    data << genre.to_hash
+    data_upgrade('genres', data)
+  end
+
+  def save_labels(label)
+    data = get_data('labels')
+    data << label.to_hash
+    data_upgrade('labels', data)
   end
 end
 
@@ -140,16 +161,16 @@ runnn = Run.new()
 
 #runnn.save_books(@books[0])
 
-@books.each do |book|
-	runnn.save_books(book)
+@authors.each do |author|
+	runnn.save_authors(author)
 end
 
-@games.each do |game|
-	runnn.save_games(game)
+@genres.each do |genre|
+	runnn.save_genres(genre)
 end
 
-@albums.each do |album|
-	runnn.save_music_album(album)
+@labels.each do |label|
+	runnn.save_labels(label)
 end
 
 # p @books[0].to_json

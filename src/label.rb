@@ -22,4 +22,12 @@ class Label
   def to_s
     title
   end
+
+	def to_hash
+		{
+			'id': @id,
+			'title': @title,
+			'color': @color
+		}
+	end
 end
