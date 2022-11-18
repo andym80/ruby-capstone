@@ -32,4 +32,8 @@ class Label
       puts "[#{index}] #{label.title} - #{label.color}"
     end
   end
+
+  def to_s
+    title
+  end
 end

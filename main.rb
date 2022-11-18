@@ -13,17 +13,18 @@ class Main # rubocop:disable Metrics/ClassLength
   def puts_options
     puts ' - [1] List all books'
     puts ' - [2] List all music albums'
-    puts ' - [3] List all movies'
-    puts ' - [4] List of games'
-    puts ' - [5] List all genres'
-    puts ' - [6] List all labels'
-    puts ' - [7] List all authors'
-    puts ' - [8] List all sources'
-    puts ' - [9] Add a book'
-    puts ' - [10] Add a music album'
-    puts ' - [11] Add a movie'
-    puts ' - [12] Add a game'
+    puts ' - [3] List of games'
+    puts ' - [4] List all genres'
+    puts ' - [5] List all labels'
+    puts ' - [6] List all authors'
+    puts ' - [7] Add a book'
+    puts ' - [8] Add a music album'
+    puts ' - [9] Add a game'
     puts ' - [X] - Exit'
+  end
+
+  def created_message(title)
+    "'#{title.upcase}' was created successfully!"
   end
 
   def option_in
@@ -35,18 +36,25 @@ class Main # rubocop:disable Metrics/ClassLength
     option
   end
 
-  def input_genre
-    puts 'please write Genre name'
-    name = gets.chomp
+  def please_introduce_input(field)
+    puts "\nplease intoduce a #{field}"
+    gets.chomp
+  end
 
-    @app.add_genre(name)
+  def input_label
+    title = please_introduce_input 'Label title'
+    color = please_introduce_input 'Label color'
+
+    @app.add_label(title, color)
+  end
+
+  def input_genre
+    @app.add_genre(please_introduce_input('genre'))
   end
 
   def input_author
-    puts 'please write Author first name'
-    first_name = gets.chomp
-    puts 'please write Author last name'
-    last_name = gets.chomp
+    first_name = please_introduce_input 'Author first name'
+    last_name = please_introduce_input 'Author last name'
 
     @app.add_author(first_name, last_name)
   end
@@ -59,7 +67,7 @@ class Main # rubocop:disable Metrics/ClassLength
     loop do
       return input_method.call if list.empty?
 
-      puts "plase choose a #{prop_name} form the list bellow or add a new one with the letter [A] "
+      puts "\nplease choose a #{prop_name} form the list bellow - or add a new one with the letter [A] "
       list.each_with_index do |item, index|
         puts "[#{index}] #{item}"
       end
@@ -71,6 +79,15 @@ class Main # rubocop:disable Metrics/ClassLength
     end
   end
 
+  def choose_date_input(date_for)
+    input_date = ''
+    until Date.parsable?(input_date)
+      puts "\nPlease Input a date (YYYY-MM-DD) for #{date_for}"
+      input_date = gets.chomp.downcase
+    end
+    Date.parse(input_date)
+  end
+
   def choose_author_input
     choose_from_list(@app.authors, 'author', method(:input_author))
   end
@@ -79,41 +96,31 @@ class Main # rubocop:disable Metrics/ClassLength
     choose_from_list(@app.genres, 'genre', method(:input_genre))
   end
 
-  def choose_date_input(date_for)
-    input_date = ''
-    until Date.parsable?(input_date)
-      puts "Please Input a date (YYYY-MM-DD) for #{date_for}"
-      input_date = gets.chomp.downcase
-    end
-    Date.parse(input_date)
-  end
-
-  def choose_title_input
-    puts 'please intoduce a title'
-    gets.chomp
+  def choose_label_input
+    choose_from_list(@app.labels, 'label', method(:input_label))
   end
 
   # input for (genre, author, source, label, publish_date) return a map
   def input_item_obj
     rtn_obj = {}
 
-    puts 'WARNING W.I.P'
-
-    rtn_obj[:title] = choose_title_input
+    rtn_obj[:title] = please_introduce_input 'title'
     rtn_obj[:genre] = choose_genre_input
     rtn_obj[:author] = choose_author_input
     rtn_obj[:source] = 'choose_source_input'
-    rtn_obj[:label] = 'choose_label_input'
+    rtn_obj[:label] = choose_label_input
     rtn_obj[:publish_date] = choose_date_input 'date of publish'
 
     rtn_obj
   end
 
   def true_or_false_question(question)
-    puts "#{question} [Y]"
-    option = gets.chomp.downcase
+    puts "\n#{question} [Y]"
+    gets.chomp.downcase == 'y'
+  end
 
-    option == 'y'
+  def cover_in_bad_condition_input
+    true_or_false_question('is the cover in bad condition?') ? 'bad' : 'good'
   end
 
   def input_game_option
@@ -122,6 +129,8 @@ class Main # rubocop:disable Metrics/ClassLength
     multiplayer = true_or_false_question 'is multiplayer?'
 
     last_played_at = choose_date_input 'last played at'
+
+    created_message item_map[:title]
 
     @app.add_game(
       item_map[:title],
@@ -133,6 +142,8 @@ class Main # rubocop:disable Metrics/ClassLength
       multiplayer,
       last_played_at
     )
+
+    created_message item_map[:title]
   end
 
   def input_album_option
@@ -149,6 +160,28 @@ class Main # rubocop:disable Metrics/ClassLength
       item_map[:publish_date],
       on_spotify
     )
+
+    created_message item_map[:title]
+  end
+
+  def input_book_option
+    item_map = input_item_obj
+
+    publisher = please_introduce_input 'Publisher'
+    cover_state = cover_in_bad_condition_input
+
+    @app.add_book(
+      item_map[:title],
+      item_map[:genre],
+      item_map[:author],
+      item_map[:source],
+      item_map[:label],
+      item_map[:publish_date],
+      publisher,
+      cover_state
+    )
+
+    created_message item_map[:title]
   end
 
   def press_enter_message
@@ -162,38 +195,34 @@ class Main # rubocop:disable Metrics/ClassLength
       option = option_in
       case option
       when '1' # CASE [1] List all books
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all books'"
+        puts @app.all_books_list_str
+        press_enter_message
       when '2' # CASE [2] List all music albums
         puts @app.all_albums_list_str
         press_enter_message
-      when '3' # CASE [3] List all movies
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all movies'"
-      when '4' # CASE [4] List of games
+      when '3' # CASE [3] List of games
         puts @app.all_games_list_str
         press_enter_message
-      when '5' # CASE [5] List all genres
+      when '4' # CASE [4] List all genres
         puts @app.all_genres_list_str
         press_enter_message
-      when '6' # CASE [6] List all labels
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all labels'"
-      when '7' # CASE [7] List all authors
+      when '5' # CASE [5] List all labels
+        puts @app.all_labels_list_str
+        press_enter_message
+      when '6' # CASE [6] List all authors
         puts @app.all_authors_list_str
         press_enter_message
-      when '8' # CASE [8] List all sources
-        raise NotImplementedError, "#{self.class} has not implemented method 'List all sources'"
-      when '9' # CASE [9] Add a book
-        raise NotImplementedError, "#{self.class} has not implemented method 'Add a book'"
-      when '10' # CASE [10] Add a music album
+      when '7' # CASE [7] Add a book
+        input_book_option
+      when '8' # CASE [8] Add a music album
         input_album_option
-      when '11' # CASE [11] Add a movie
-        raise NotImplementedError, "#{self.class} has not implemented method 'Add a movie'"
-      when '12' # CASE [12] Add a game
+      when '9' # CASE [9] Add a game
         input_game_option
       when 'x' # CASE [x] Exit
         puts "Exit\n"
         break
       else
-        puts_not_valid_option option
+        puts_not_valit_option option
       end
     end
   end
