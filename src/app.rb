@@ -1,9 +1,9 @@
-require_relative 'author'
 require_relative 'game'
 require_relative 'book'
 require_relative 'label'
 require_relative 'music_album'
 require_relative 'genre'
+require_relative 'author'
 
 class App # rubocop:disable Metrics/ClassLength
   attr_reader :games, :albums, :authors, :genres, :labels
