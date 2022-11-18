@@ -28,47 +28,47 @@ module PreserveData
   end
 
   def load_albums
-		@albums = get_data('music_album').map do |album_hash|
-			MusicAlbum.new(
-				album_hash['title'],
-				@genres.find{|e| e.id == album_hash['genre']},
-				@authors.find{|e| e.id == album_hash['author']},
-				@labels.find{|e| e.id == album_hash['label']},
-				Date.parse(album_hash['publish_date']),
-				album_hash['on_spotify'],
-				album_hash['id'],
-			)
-		end || []
+    @albums = get_data('music_album').map do |album_hash|
+      MusicAlbum.new(
+        album_hash['title'],
+        @genres.find { |e| e.id == album_hash['genre'] },
+        @authors.find { |e| e.id == album_hash['author'] },
+        @labels.find { |e| e.id == album_hash['label'] },
+        Date.parse(album_hash['publish_date']),
+        album_hash['on_spotify'],
+        album_hash['id']
+      )
+    end || []
   end
 
   def load_books
-		@books = get_data('books').map do |book_hash|
-			Book.new(
-				book_hash['title'],
-				@genres.find{|e| e.id == book_hash['genre']},
-				@authors.find{|e| e.id == book_hash['author']},
-				@labels.find{|e| e.id == book_hash['label']},
-				Date.parse(book_hash['publish_date']),
-				book_hash['publisher'],
-				book_hash['cover_state'],
-				book_hash['id'],
-			)
-		end || []
+    @books = get_data('books').map do |book_hash|
+      Book.new(
+        book_hash['title'],
+        @genres.find { |e| e.id == book_hash['genre'] },
+        @authors.find { |e| e.id == book_hash['author'] },
+        @labels.find { |e| e.id == book_hash['label'] },
+        Date.parse(book_hash['publish_date']),
+        book_hash['publisher'],
+        book_hash['cover_state'],
+        book_hash['id']
+      )
+    end || []
   end
 
   def load_games
-		@games = get_data('games').map do |game_hash|
-			Game.new(
-				game_hash['title'],
-				@genres.find{|e| e.id == game_hash['genre']},
-				@authors.find{|e| e.id == game_hash['author']},
-				@labels.find{|e| e.id == game_hash['label']},
-				Date.parse(game_hash['publish_date']),
-				game_hash['multiplayer'],
-				Date.parse(game_hash['last_played_at']),
-				game_hash['id'],
-			)
-		end || []
+    @games = get_data('games').map do |game_hash|
+      Game.new(
+        game_hash['title'],
+        @genres.find { |e| e.id == game_hash['genre'] },
+        @authors.find { |e| e.id == game_hash['author'] },
+        @labels.find { |e| e.id == game_hash['label'] },
+        Date.parse(game_hash['publish_date']),
+        game_hash['multiplayer'],
+        Date.parse(game_hash['last_played_at']),
+        game_hash['id']
+      )
+    end || []
   end
 
   def load_authors
@@ -89,56 +89,49 @@ module PreserveData
     end || []
   end
 
-	def save_item(file_name, list)
-    data = get_data(file_name)
-    data = list.map do |item|
-			item.to_hash
-    end
+  def save_item(file_name, list)
+    data = list.map(&:to_hash)
     data_upgrade(file_name, data)
-	end
-
+  end
 
   def save_games
-		save_item('games', @games)
+    save_item('games', @games)
   end
 
   def save_books
-		save_item('books', @books)
+    save_item('books', @books)
   end
 
   def save_albums
-		save_item('music_album', @albums)
+    save_item('music_album', @albums)
   end
 
   def save_authors
-		save_item('authors', @authors)
+    save_item('authors', @authors)
   end
 
   def save_genres
-		save_item('genres', @genres)
+    save_item('genres', @genres)
   end
 
   def save_labels
-		save_item('labels', @labels)
+    save_item('labels', @labels)
   end
 end
 
 class Run
   include PreserveData
-	attr_accessor :authors, :genres, :labels, :albums, :games, :books
-
+  attr_accessor :authors, :genres, :labels, :albums, :games, :books
 
   def initialize()
     load_authors
     load_genres
     load_labels
-		load_albums
-		load_games
-		load_books
+    load_albums
+    load_games
+    load_books
   end
 end
-
-
 
 # @books = [
 # 	Book.new(

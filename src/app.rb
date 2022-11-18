@@ -14,9 +14,9 @@ class App # rubocop:disable Metrics/ClassLength
     load_authors
     load_genres
     load_labels
-		load_albums
-		load_games
-		load_books
+    load_albums
+    load_games
+    load_books
   end
 
   def there_not_something_message(something)
@@ -26,7 +26,7 @@ class App # rubocop:disable Metrics/ClassLength
   def add_label(title, color)
     new_label = Label.new(title, color)
     @labels.push(new_label)
-		save_labels
+    save_labels
     new_label
   end
 
@@ -46,7 +46,7 @@ class App # rubocop:disable Metrics/ClassLength
   def add_author(first_name, last_name)
     new_author = Author.new(first_name, last_name)
     @authors.push(new_author)
-		save_authors
+    save_authors
     new_author
   end
 
@@ -66,7 +66,7 @@ class App # rubocop:disable Metrics/ClassLength
   def add_genre(neme)
     new_genre = Genre.new(neme)
     @genres.push(new_genre)
-		save_genres
+    save_genres
     new_genre
   end
 
@@ -101,7 +101,7 @@ class App # rubocop:disable Metrics/ClassLength
                   multiplayer,
                   last_played_at
                 ))
-								save_games
+    save_games
   end
 
   def singleplayer_or_multiplayer(is_multiplayer)
@@ -151,7 +151,7 @@ class App # rubocop:disable Metrics/ClassLength
                    publish_date,
                    on_spotify
                  ))
-								 save_albums
+    save_albums
   end
 
   def in_bad_state_message(cover_state)
@@ -189,6 +189,6 @@ class App # rubocop:disable Metrics/ClassLength
                   publisher,
                   cover_state
                 ))
-								save_books
+    save_books
   end
 end
