@@ -63,8 +63,8 @@ class App # rubocop:disable Metrics/ClassLength
     list_str
   end
 
-  def add_genre(neme)
-    new_genre = Genre.new(neme)
+  def add_genre(name)
+    new_genre = Genre.new(name)
     @genres.push(new_genre)
     save_genres
     new_genre
