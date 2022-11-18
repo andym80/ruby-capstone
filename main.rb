@@ -37,7 +37,7 @@ class Main # rubocop:disable Metrics/ClassLength
   end
 
   def please_introduce_input(field)
-    puts "please intoduce a #{field}"
+    puts "\nplease intoduce a #{field}"
     gets.chomp
   end
 
@@ -67,7 +67,7 @@ class Main # rubocop:disable Metrics/ClassLength
     loop do
       return input_method.call if list.empty?
 
-      puts "plase choose a #{prop_name} form the list bellow or add a new one with the letter [A] "
+      puts "\nplase choose a #{prop_name} form the list bellow - or add a new one with the letter [A] "
       list.each_with_index do |item, index|
         puts "[#{index}] #{item}"
       end
@@ -82,7 +82,7 @@ class Main # rubocop:disable Metrics/ClassLength
   def choose_date_input(date_for)
     input_date = ''
     until Date.parsable?(input_date)
-      puts "Please Input a date (YYYY-MM-DD) for #{date_for}"
+      puts "\nPlease Input a date (YYYY-MM-DD) for #{date_for}"
       input_date = gets.chomp.downcase
     end
     Date.parse(input_date)
@@ -115,7 +115,7 @@ class Main # rubocop:disable Metrics/ClassLength
   end
 
   def true_or_false_question(question)
-    puts "#{question} [Y]"
+    puts "\n#{question} [Y]"
     gets.chomp.downcase == 'y'
   end
 
