@@ -1,6 +1,7 @@
 require_relative 'author'
 require_relative 'game'
 require_relative 'book'
+require_relative 'label'
 require_relative 'music_album'
 require_relative 'genre'
 
@@ -21,7 +22,7 @@ class App # rubocop:disable Metrics/ClassLength
   end
 
   def add_label(title, color)
-    new_label = Author.new(title, color)
+    new_label = Label.new(title, color)
     @labels.push(new_label)
     new_label
   end
