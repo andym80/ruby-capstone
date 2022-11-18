@@ -67,7 +67,7 @@ class Main # rubocop:disable Metrics/ClassLength
     loop do
       return input_method.call if list.empty?
 
-      puts "\nplase choose a #{prop_name} form the list bellow - or add a new one with the letter [A] "
+      puts "\nplease choose a #{prop_name} form the list bellow - or add a new one with the letter [A] "
       list.each_with_index do |item, index|
         puts "[#{index}] #{item}"
       end
