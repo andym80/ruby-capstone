@@ -117,7 +117,7 @@ class App # rubocop:disable Metrics/ClassLength
   end
 
 	def on_spotify_message(is_on_spoty)
-		is_on_spoty ? " and is on spotify\n": ''
+		is_on_spoty ? " and is on spotify": ''
 	end
 
 
@@ -127,7 +127,7 @@ class App # rubocop:disable Metrics/ClassLength
     rtn_str = "list of all albums:\n"
     @albums.each_with_index do |album, index|
       rtn_str += "[#{index}] '#{album.title}' Author: #{album.author}"
-			rtn_str += on_spotify_message album.on_spotify
+			rtn_str += "#{on_spotify_message album.on_spotify}\n"
     end
     rtn_str
   end
@@ -152,6 +152,11 @@ class App # rubocop:disable Metrics/ClassLength
                  ))
   end
 
+	def in_bad_state_message (cover_state)
+		cover_state == 'bad' ? ', and cover in BAD state!' : ''
+	end
+
+
   def all_books_list_str
     return there_not_something_message 'books' if @books.empty?
 
@@ -159,7 +164,9 @@ class App # rubocop:disable Metrics/ClassLength
     @books.each_with_index do |book, index|
       list_str += "[#{index}] The Book: '#{book.title}' "
       list_str += "by #{book.author}  "
-      list_str += "has been Published by #{book.publisher} on #{book.publish_date}\n"
+      list_str += "has been Published by #{book.publisher} on #{book.publish_date}"
+			list_str += "#{in_bad_state_message book.cover_state}\n"
+
     end
     list_str
   end
