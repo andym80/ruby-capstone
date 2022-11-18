@@ -31,24 +31,8 @@ module PreserveData
     get_data('music_album').map { |album| MusicAlbum.new(album['label'], album['author']) }
   end
 
-  def save_music_album(album)
-    data = get_data('music_album')
-    data << { label: album.label, author: album.author }
-    data_upgrade('music_album', data)
-
-    puts "The album '#{album.label.upcase}' by #{album.author.upcase} was created successfully!"
-  end
-
   def load_books
     get_data('books').map { |book| Book.new(book['title'], book['author']) }
-  end
-
-  def save_books(book)
-    data = get_data('books')
-    data << { title: book.title, author: book.author }
-    data_upgrade('books', data)
-
-    puts "The book '#{book.title.upcase}' by #{book.author.upcase} was created successfully!"
   end
 
 	def load(_games)
@@ -57,52 +41,59 @@ module PreserveData
 
 	def save_games(game)
 		data = get_data('games')
-		data << { title: game.title, author: game.author }
+		data << game.to_hash
 		data_upgrade('games', data)
-
-		puts "The game '#{game.title.upcase}' by #{game.author.upcase} was created successfully!"
 	end
+
+  def save_books(book)
+    data = get_data('books')
+    data << book.to_hash
+    data_upgrade('books', data)
+  end
+
+  def save_music_album(album)
+    data = get_data('music_album')
+    data << album.to_hash
+    data_upgrade('music_album', data)
+  end
 end
 
 
-@author = [
+@authors = [
 	Author.new('Author 0 fn', 'Author 0 ln'),
 	 Author.new('Author 1 fn', 'Author 1 ln'),
 	]
-@genre = [
+@genres = [
 	Genre.new('genre 0'),
 	Genre.new('genre 1'),
 	Genre.new('genre 2'),
 ]
-@label = [
+@labels = [
 	Label.new('The Label', 'The Color'),
 ]
 
 @books = [
 	Book.new(
 		'The Book 0',
-		@genre[0],
-		@author[0],
-		'The Source',
-		@label[0],
+		@genres[0],
+		@authors[0],
+		@labels[0],
 		Date.today,
 		'The Publisher'
 	),
 	Book.new(
 		'The Book 1',
-		@genre[1],
-		@author[0],
-		'The Source',
-		@label[0],
+		@genres[1],
+		@authors[0],
+		@labels[0],
 		Date.today,
 		'The Publisher'
 	),
 	Book.new(
 		'The Book 2',
-		@genre[2],
-		@author[1],
-		'The Source',
-		@label[0],
+		@genres[2],
+		@authors[1],
+		@labels[0],
 		Date.today,
 		'The Publisher'
 	)
@@ -111,20 +102,18 @@ end
 @games = [
 	Game.new(
 		'Game 0 title',
-		@genre[2],
-		@author[1],
-		'source',
-		@label[0],
+		@genres[2],
+		@authors[1],
+		@labels[0],
 		Date.today ,
 		true,
 		Date.today
 	),
 	Game.new(
 		'Game 1 title',
-		@genre[2],
-		@author[1],
-		'source',
-		@label[0],
+		@genres[2],
+		@authors[1],
+		@labels[0],
 		Date.today,
 		false,
 		Date.today
@@ -135,10 +124,9 @@ end
 @albums = [
 	MusicAlbum.new(
     'MusicAlbum',
-    @genre[2],
-    @author[0],
-    'source',
-    @label[0],
+    @genres[2],
+    @authors[0],
+    @labels[0],
     Date.today,
     false
   )
@@ -150,4 +138,18 @@ end
 
 runnn = Run.new()
 
-runnn.save_books(@books[0])
+#runnn.save_books(@books[0])
+
+@books.each do |book|
+	runnn.save_books(book)
+end
+
+@games.each do |game|
+	runnn.save_games(game)
+end
+
+@albums.each do |album|
+	runnn.save_music_album(album)
+end
+
+# p @books[0].to_json

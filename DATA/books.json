@@ -1,10 +1,35 @@
 [
   {
+    "id" : 620,
     "title" : "The Book 0",
-    "author" : "Author 0 fn Author 0 ln"
+    "genre" : 107,
+    "author" : 320,
+    "label" : 834,
+    "publish_date" : "2022-11-18",
+    "archived" : false,
+    "cover_state" : "good",
+    "publisher" : "The Publisher"
   },
   {
-    "title" : "The Book 0",
-    "author" : "Author 0 fn Author 0 ln"
+    "id" : 795,
+    "title" : "The Book 1",
+    "genre" : 442,
+    "author" : 320,
+    "label" : 834,
+    "publish_date" : "2022-11-18",
+    "archived" : false,
+    "cover_state" : "good",
+    "publisher" : "The Publisher"
+  },
+  {
+    "id" : 323,
+    "title" : "The Book 2",
+    "genre" : 140,
+    "author" : 940,
+    "label" : 834,
+    "publish_date" : "2022-11-18",
+    "archived" : false,
+    "cover_state" : "good",
+    "publisher" : "The Publisher"
   }
 ]

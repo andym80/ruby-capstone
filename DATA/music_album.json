@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id" : 309,
+    "title" : "MusicAlbum",
+    "genre" : 140,
+    "author" : 320,
+    "label" : 834,
+    "publish_date" : "2022-11-18",
+    "archived" : false,
+    "on_spotify" : false
+  }
+]
