@@ -11,15 +11,15 @@ class Main # rubocop:disable Metrics/ClassLength
   end
 
   def puts_options
-    puts ' -  [1] List all books'
-    puts ' -  [2] List all music albums'
-    puts ' -  [3] List of games'
-    puts ' -  [5] List all genres'
-    puts ' -  [6] List all labels'
-    puts ' -  [7] List all authors'
-    puts ' -  [8] Add a book'
-    puts ' -  [10] Add a music album'
-    puts ' -  [11] Add a game'
+    puts ' - [1] List all books'
+    puts ' - [2] List all music albums'
+    puts ' - [3] List of games'
+    puts ' - [4] List all genres'
+    puts ' - [5] List all labels'
+    puts ' - [6] List all authors'
+    puts ' - [7] Add a book'
+    puts ' - [8] Add a music album'
+    puts ' - [9] Add a game'
     puts ' - [X] - Exit'
   end
 
@@ -205,26 +205,26 @@ class Main # rubocop:disable Metrics/ClassLength
       when '3' # CASE [3] List of games
         puts @app.all_games_list_str
         press_enter_message
-      when '5' # CASE [5] List all genres
+      when '4' # CASE [4] List all genres
         puts @app.all_genres_list_str
         press_enter_message
-      when '6' # CASE [6] List all labels
+      when '5' # CASE [5] List all labels
         puts @app.all_labels_list_str
         press_enter_message
-      when '7' # CASE [7] List all authors
+      when '6' # CASE [6] List all authors
         puts @app.all_authors_list_str
         press_enter_message
-      when '8' # CASE [8] Add a book
+      when '7' # CASE [7] Add a book
         input_book_option
-      when '10' # CASE [10] Add a music album
+      when '8' # CASE [8] Add a music album
         input_album_option
-      when '11' # CASE [11] Add a game
+      when '9' # CASE [9] Add a game
         input_game_option
       when 'x' # CASE [x] Exit
         puts "Exit\n"
         break
       else
-        puts_not_valid_option option
+        puts_not_valit_option option
       end
     end
   end
