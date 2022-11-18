@@ -19,19 +19,6 @@ class BookUserInterface
   puts "The book '#{title.upcase}' by #{author.upcase} was created successfully!"
 end
 
-def list_all_books
-  if books.count.zero?
-    puts ''
-    puts 'There are no books yet try adding some!'
-    puts ''
-  else
-    @books.each do |book|
-      puts "The Book: #{book.title} by #{book.author} has been Published by #{book.publisher} on #{book.publish_date}"
-    end
-  end
-  puts ''
-end
-
 def save_books_data
   return unless @books_length > books_length
 
@@ -82,14 +69,4 @@ end
 
 def list_books_by_author_and_publisher_and_genre(author, publisher, genre)
   @books.select { |book| book.author == author && book.publisher == publisher && book.genre == genre }
-end
-
-def list_books(books)
-  books.each_with_index do |book, index|
-    puts "[#{index}]
-	The Book: #{book.title}
-	by #{book.author}
-	has been Published by #{book.publisher}
-	on #{book.publish_date}"
-  end
 end
