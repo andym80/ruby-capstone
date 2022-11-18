@@ -12,11 +12,10 @@ CREATE TABLE IF NOT EXISTS public."MusicAlbum"
     archived boolean,
     publish_date date,
     on_spotify boolean,
-    "can_be_archived?()" boolean
+    CONSTRAINT "MusicAlbum_pkey" PRIMARY KEY (id)
 )
 
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public."MusicAlbum"
     OWNER to postgres;
-    

@@ -4,10 +4,8 @@
 
 CREATE TABLE IF NOT EXISTS public.genre
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name text COLLATE pg_catalog."default" NOT NULL,
-    items text COLLATE pg_catalog."default" NOT NULL,
-    add_items text COLLATE pg_catalog."default",
     CONSTRAINT genre_pkey PRIMARY KEY (id)
 )
 
