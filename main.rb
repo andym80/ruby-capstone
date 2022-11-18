@@ -37,7 +37,7 @@ class Main # rubocop:disable Metrics/ClassLength
   end
 
   def please_introduce_input(field)
-    puts "\nplease intoduce a #{field}"
+    puts "\nplease introduce a #{field}"
     gets.chomp
   end
 
