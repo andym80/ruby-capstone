@@ -116,12 +116,18 @@ class App # rubocop:disable Metrics/ClassLength
     list_str
   end
 
+	def on_spotify_message(is_on_spoty)
+		is_on_spoty ? " and is on spotify\n": ''
+	end
+
+
   def all_albums_list_str
     return there_not_something_message 'albums' if @albums.empty?
 
     rtn_str = "list of all albums:\n"
     @albums.each_with_index do |album, index|
-      rtn_str += "[#{index}] '#{album.title}' Author: #{album.author}\n"
+      rtn_str += "[#{index}] '#{album.title}' Author: #{album.author}"
+			rtn_str += on_spotify_message album.on_spotify
     end
     rtn_str
   end
