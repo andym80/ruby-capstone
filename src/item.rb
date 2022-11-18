@@ -6,17 +6,11 @@ require 'time'
 TEN_YEARS = 60 * 60 * 24 * 365 * 10
 
 class Item
-  @next_item_id = 0
-
-  def self.generate_id
-    @next_item_id += 1
-  end
-
   attr_reader :archived, :id
   attr_accessor :genre, :author, :source, :label, :publish_date, :title
 
-  def initialize(title, genre, author, source, label, publish_date) # rubocop:disable Metrics/ParameterLists
-    @id = Item.generate_id
+  def initialize(title, genre, author, source, label, publish_date, id = SecureRandom.random_number(1000)) # rubocop:disable Metrics/ParameterLists
+    @id = id
     @title = title
     @genre = genre
     @author = author

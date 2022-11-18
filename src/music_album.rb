@@ -11,9 +11,10 @@ class MusicAlbum < Item
     source,
     label,
     publish_date,
-    on_spotify
+    on_spotify,
+		id = SecureRandom.random_number(1000)
   )
-    super(title, genre, author, source, label, publish_date)
+    super(title, genre, author, source, label, publish_date, id)
     @on_spotify = on_spotify
   end
 

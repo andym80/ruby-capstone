@@ -1,6 +1,5 @@
 require_relative 'spec_helper'
 require './src/game'
-require 'date'
 require './src/label'
 
 describe Game do
@@ -15,9 +14,9 @@ describe Game do
       base_author,
       'source',
       base_label,
-      DateTime.now - publish_date_from_now,
+      Date.new - publish_date_from_now,
       multiplayer,
-      DateTime.now - last_played_at_from_now
+      Date.new - last_played_at_from_now
     )
   end
 

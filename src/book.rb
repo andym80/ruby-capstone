@@ -19,9 +19,10 @@ class Book < Item
     label,
     publish_date,
     publisher,
-    cover_state = 'good'
+    cover_state = 'good',
+		id = SecureRandom.random_number(1000)
   )
-    super(title, genre, author, source, label, publish_date)
+    super(title, genre, author, source, label, publish_date, id)
     @title = title
     @publisher = publisher
     @cover_state = cover_state

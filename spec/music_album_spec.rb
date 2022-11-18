@@ -12,7 +12,7 @@ def build_test_albun(publish_date_from_now, on_spotify)
     base_author,
     'source',
     base_label,
-    DateTime.now - publish_date_from_now,
+    Date.new - publish_date_from_now,
     on_spotify
   )
 end

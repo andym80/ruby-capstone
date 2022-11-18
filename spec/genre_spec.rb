@@ -13,7 +13,7 @@ describe Genre do
       @base_author,
       'source',
       @base_label,
-      DateTime.now - (60 * 60 * 24 * 365 * 15)
+      Date.new - (60 * 60 * 24 * 365 * 15)
     )
   end
 
@@ -49,7 +49,7 @@ describe Genre do
         @base_author,
         'source',
         @base_label,
-        DateTime.now - (60 * 60 * 24 * 365 * 15)
+        Date.new - (60 * 60 * 24 * 365 * 15)
       )
     end
 
