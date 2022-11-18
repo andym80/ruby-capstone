@@ -1,4 +1,6 @@
 require './music_album'
+require './book'
+require './game'
 
 module PreserveData
   def get_data(file)
@@ -48,7 +50,7 @@ end
 
 def load(_games)
   get_data('games').map { |game| Game.new(game['title'], game['author']) }
-  end
+end
 
 def save_games(game)
   data = get_data('games')
@@ -56,6 +58,4 @@ def save_games(game)
   data_upgrade('games', data)
 
   puts "The game '#{game.title.upcase}' by #{game.author.upcase} was created successfully!"
-end
-
 end
