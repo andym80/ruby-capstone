@@ -1,0 +1,24 @@
+[
+	{
+		"id": 77,
+		"title": "Game 0 title",
+		"genre": 803,
+		"author": 844,
+		"label": 601,
+		"publish_date": "2022-11-18",
+		"archived": false,
+		"multiplayer": true,
+		"last_played_at": "2022-11-18"
+	},
+	{
+		"id": 888,
+		"title": "Game 1 title",
+		"genre": 803,
+		"author": 844,
+		"label": 601,
+		"publish_date": "2022-11-18",
+		"archived": false,
+		"multiplayer": false,
+		"last_played_at": "2022-11-18"
+	}
+]

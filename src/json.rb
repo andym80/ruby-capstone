@@ -27,150 +27,190 @@ module PreserveData
     File.write("./DATA/#{file}.json", json_data)
   end
 
-  def load_music_album
-    get_data('music_album').map { |album| MusicAlbum.new(album['label'], album['author']) }
+  def load_albums
+		@albums = get_data('music_album').map do |album_hash|
+			MusicAlbum.new(
+				album_hash['title'],
+				@genres.find{|e| e.id == album_hash['genre']},
+				@authors.find{|e| e.id == album_hash['author']},
+				@labels.find{|e| e.id == album_hash['label']},
+				Date.parse(album_hash['publish_date']),
+				album_hash['on_spotify'],
+				album_hash['id'],
+			)
+		end || []
   end
 
   def load_books
-    get_data('books').map { |book| Book.new(book['title'], book['author']) }
+		@books = get_data('books').map do |book_hash|
+			Book.new(
+				book_hash['title'],
+				@genres.find{|e| e.id == book_hash['genre']},
+				@authors.find{|e| e.id == book_hash['author']},
+				@labels.find{|e| e.id == book_hash['label']},
+				Date.parse(book_hash['publish_date']),
+				book_hash['publisher'],
+				book_hash['cover_state'],
+				book_hash['id'],
+			)
+		end || []
   end
 
-	def load(_games)
-		get_data('games').map { |game| Game.new(game['title'], game['author']) }
+  def load_games
+		@games = get_data('games').map do |game_hash|
+			Game.new(
+				game_hash['title'],
+				@genres.find{|e| e.id == game_hash['genre']},
+				@authors.find{|e| e.id == game_hash['author']},
+				@labels.find{|e| e.id == game_hash['label']},
+				Date.parse(game_hash['publish_date']),
+				game_hash['multiplayer'],
+				Date.parse(game_hash['last_played_at']),
+				game_hash['id'],
+			)
+		end || []
+  end
+
+  def load_authors
+    @authors = get_data('authors').map do |author_hash|
+      Author.from_hash(author_hash)
+    end || []
+  end
+
+  def load_genres
+    @genres = get_data('genres').map do |genre_hash|
+      Genre.from_hash(genre_hash)
+    end || []
+  end
+
+  def load_labels
+    @labels = get_data('labels').map do |label_hash|
+      Label.from_hash(label_hash)
+    end || []
+  end
+
+	def save_item(file_name, list)
+    data = get_data(file_name)
+    data = list.map do |item|
+			item.to_hash
+    end
+    data_upgrade(file_name, data)
 	end
 
-	def save_games(game)
-		data = get_data('games')
-		data << game.to_hash
-		data_upgrade('games', data)
-	end
 
-  def save_books(book)
-    data = get_data('books')
-    data << book.to_hash
-    data_upgrade('books', data)
+  def save_games
+		save_item('games', @games)
   end
 
-  def save_albums(album)
-    data = get_data('music_album')
-    data << album.to_hash
-    data_upgrade('music_album', data)
+  def save_books
+		save_item('books', @books)
   end
 
-
-
-
-	def save_authors(author)
-		data = get_data('authors')
-		data << author.to_hash
-		data_upgrade('authors', data)
-	end
-
-  def save_genres(genre)
-    data = get_data('genres')
-    data << genre.to_hash
-    data_upgrade('genres', data)
+  def save_albums
+		save_item('music_album', @albums)
   end
 
-  def save_labels(label)
-    data = get_data('labels')
-    data << label.to_hash
-    data_upgrade('labels', data)
+  def save_authors
+		save_item('authors', @authors)
+  end
+
+  def save_genres
+		save_item('genres', @genres)
+  end
+
+  def save_labels
+		save_item('labels', @labels)
   end
 end
-
-
-@authors = [
-	Author.new('Author 0 fn', 'Author 0 ln'),
-	 Author.new('Author 1 fn', 'Author 1 ln'),
-	]
-@genres = [
-	Genre.new('genre 0'),
-	Genre.new('genre 1'),
-	Genre.new('genre 2'),
-]
-@labels = [
-	Label.new('The Label', 'The Color'),
-]
-
-@books = [
-	Book.new(
-		'The Book 0',
-		@genres[0],
-		@authors[0],
-		@labels[0],
-		Date.today,
-		'The Publisher'
-	),
-	Book.new(
-		'The Book 1',
-		@genres[1],
-		@authors[0],
-		@labels[0],
-		Date.today,
-		'The Publisher'
-	),
-	Book.new(
-		'The Book 2',
-		@genres[2],
-		@authors[1],
-		@labels[0],
-		Date.today,
-		'The Publisher'
-	)
-]
-
-@games = [
-	Game.new(
-		'Game 0 title',
-		@genres[2],
-		@authors[1],
-		@labels[0],
-		Date.today ,
-		true,
-		Date.today
-	),
-	Game.new(
-		'Game 1 title',
-		@genres[2],
-		@authors[1],
-		@labels[0],
-		Date.today,
-		false,
-		Date.today
-	),
-]
-
-
-@albums = [
-	MusicAlbum.new(
-    'MusicAlbum',
-    @genres[2],
-    @authors[0],
-    @labels[0],
-    Date.today,
-    false
-  )
-]
 
 class Run
-	include PreserveData
+  include PreserveData
+	attr_accessor :authors, :genres, :labels, :albums, :games, :books
+
+
+  def initialize()
+    load_authors
+    load_genres
+    load_labels
+		load_albums
+		load_games
+		load_books
+  end
 end
 
-runnn = Run.new()
 
-#runnn.save_books(@books[0])
 
-@authors.each do |author|
-	runnn.save_authors(author)
-end
+# @books = [
+# 	Book.new(
+# 		'The Book 0',
+# 		@genres[0],
+# 		@authors[0],
+# 		@labels[0],
+# 		Date.today,
+# 		'The Publisher'
+# 	),
+# 	Book.new(
+# 		'The Book 1',
+# 		@genres[1],
+# 		@authors[0],
+# 		@labels[0],
+# 		Date.today,
+# 		'The Publisher'
+# 	),
+# 	Book.new(
+# 		'The Book 2',
+# 		@genres[2],
+# 		@authors[1],
+# 		@labels[0],
+# 		Date.today,
+# 		'The Publisher'
+# 	)
+# ]
 
-@genres.each do |genre|
-	runnn.save_genres(genre)
-end
+# @games = [
+# 	Game.new(
+# 		'Game 0 title',
+# 		@genres[2],
+# 		@authors[1],
+# 		@labels[0],
+# 		Date.today ,
+# 		true,
+# 		Date.today
+# 	),
+# 	Game.new(
+# 		'Game 1 title',
+# 		@genres[2],
+# 		@authors[1],
+# 		@labels[0],
+# 		Date.today,
+# 		false,
+# 		Date.today
+# 	),
+# ]
 
-@labels.each do |label|
-	runnn.save_labels(label)
-end
+# @albums = [
+# 	MusicAlbum.new(
+#     'MusicAlbum',
+#     @genres[2],
+#     @authors[0],
+#     @labels[0],
+#     Date.today,
+#     false
+#   )
+# ]
 
-# p @books[0].to_json
+# #runnn.save_books(@books[0])
+
+# @authors.each do |author|
+# 	runnn.save_authors(author)
+# end
+
+# @genres.each do |genre|
+# 	runnn.save_genres(genre)
+# end
+
+# @labels.each do |label|
+# 	runnn.save_labels(label)
+# end
+
+# # p @books[0].to_json

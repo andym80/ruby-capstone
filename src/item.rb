@@ -34,13 +34,13 @@ class Item
 
   def to_hash
     {
-      'id': @id,
-      'title': @title,
-      'genre': @genre.id,
-      'author': @author.id,
-      'label': @label.id,
-      'publish_date': @publish_date,
-      'archived': @archived
+      id: @id,
+      title: @title,
+      genre: @genre.id,
+      author: @author.id,
+      label: @label.id,
+      publish_date: @publish_date,
+      archived: @archived
     }
   end
 

@@ -23,11 +23,19 @@ class Label
     title
   end
 
-	def to_hash
-		{
-			'id': @id,
-			'title': @title,
-			'color': @color
-		}
-	end
+  def to_hash
+    {
+      id: @id,
+      title: @title,
+      color: @color
+    }
+  end
+
+  def self.from_hash(hash)
+    Label.new(
+      hash['title'],
+      hash['color'],
+      hash['id']
+    )
+  end
 end

@@ -19,7 +19,7 @@ class Book < Item
     publish_date,
     publisher,
     cover_state = 'good',
-		id = SecureRandom.random_number(1000)
+    id = SecureRandom.random_number(1000)
   )
     super(title, genre, author, label, publish_date, id)
     @cover_state = cover_state
@@ -34,12 +34,12 @@ class Book < Item
     new_book
   end
 
-	def to_hash
-		super().merge({
-			'cover_state': @cover_state,
-			'publisher': @publisher
-		})
-	end
+  def to_hash
+    super().merge({
+                    cover_state: @cover_state,
+                    publisher: @publisher
+                  })
+  end
 
   def can_be_archived?
     super && @cover_state == 'bad'

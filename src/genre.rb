@@ -16,12 +16,19 @@ class Genre
     item.genre = self
   end
 
-	def to_hash
-		{
-			'id': @id,
-			'name': @name
-		}
-	end
+  def to_hash
+    {
+      id: @id,
+      name: @name
+    }
+  end
+
+  def self.from_hash(hash)
+    Genre.new(
+      hash['name'],
+      hash['id']
+    )
+  end
 
   def to_s
     name

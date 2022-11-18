@@ -1,7 +1,6 @@
 require 'securerandom'
 
 class Author
-
   attr_accessor :first_name, :last_name
   attr_reader :id, :items
 
@@ -22,14 +21,21 @@ class Author
     "#{first_name} #{last_name}"
   end
 
-	def to_hash
-		{
-			'id': @id,
-'first_name': @first_name,
-'last_name': @last_name
-		}
-	end
+  def to_hash
+    {
+      id: @id,
+      first_name: @first_name,
+      last_name: @last_name
+    }
+  end
 
+  def self.from_hash(hash)
+    Author.new(
+      hash['first_name'],
+      hash['last_name'],
+      hash['id']
+    )
+  end
 
   def to_s
     to_s_full_name
