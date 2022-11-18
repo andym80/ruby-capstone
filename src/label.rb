@@ -19,21 +19,23 @@ class Label
     item.label = self
   end
 
-  def self.list_items
-    @items
-  end
-
-  def self.list_labels(things)
-    labels = []
-    things.each do |thing|
-      labels << thing.label if thing.instance_of?(Book) && !labels.include?(thing.label.title)
-    end
-    labels.each_with_index do |label, index|
-      puts "[#{index}] #{label.title} - #{label.color}"
-    end
-  end
-
   def to_s
     title
+  end
+
+  def to_hash
+    {
+      id: @id,
+      title: @title,
+      color: @color
+    }
+  end
+
+  def self.from_hash(hash)
+    Label.new(
+      hash['title'],
+      hash['color'],
+      hash['id']
+    )
   end
 end

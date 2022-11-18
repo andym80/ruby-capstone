@@ -8,15 +8,22 @@ class Game < Item
     title,
     genre,
     author,
-    source,
     label,
     publish_date,
     multiplayer,
-    last_played_at
+    last_played_at,
+    id = SecureRandom.random_number(1000)
   )
-    super(title, genre, author, source, label, publish_date)
+    super(title, genre, author, label, publish_date, id)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+  end
+
+  def to_hash
+    super().merge({
+                    multiplayer: @multiplayer,
+                    last_played_at: @last_played_at
+                  })
   end
 
   def can_be_archived?

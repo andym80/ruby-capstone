@@ -8,13 +8,19 @@ class MusicAlbum < Item
     title,
     genre,
     author,
-    source,
     label,
     publish_date,
-    on_spotify
+    on_spotify,
+    id = SecureRandom.random_number(1000)
   )
-    super(title, genre, author, source, label, publish_date)
+    super(title, genre, author, label, publish_date, id)
     @on_spotify = on_spotify
+  end
+
+  def to_hash
+    super().merge({
+                    on_spotify: @on_spotify
+                  })
   end
 
   def can_be_archived?
