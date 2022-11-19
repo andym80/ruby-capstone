@@ -28,7 +28,7 @@ class Main # rubocop:disable Metrics/ClassLength
   end
 
   def option_in
-    puts 'Please choose a option by enterin a number:'
+    puts 'Please choose an option by entering a number:'
     puts "\n"
     puts_options
     option = gets.chomp.downcase
