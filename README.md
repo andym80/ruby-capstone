@@ -6,6 +6,9 @@
 >
 ![Catalog of my things UML class diagram](catalog_of_my_things.png)
 
+## Video Presentation
+[![Presentation](https://res.cloudinary.com/marcomontalbano/image/upload/v1668818126/video_to_markdown/images/google-drive--14zVCP5ZjpNqarxXBbu5BRn36_miZM4of-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://drive.google.com/file/d/14zVCP5ZjpNqarxXBbu5BRn36_miZM4of/view "Presentation")
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
