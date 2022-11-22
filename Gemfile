@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
 gem 'rspec', '>=3.0', '< 4.0'
 gem 'rubocop', '>= 1.0', '< 3.5'
+gem 'rails', '~> 7.0', '>= 7.0.4'
+gem 'react-rails', '~> 2.6', '>= 2.6.2'
